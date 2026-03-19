@@ -1,28 +1,30 @@
-  
-import './App.css'
-import { RouterProvider } from "react-router-dom"
-import router from "./routes"
- 
-import Navbar from './globals/navbar/Navbar'
-import Footer from './globals/footer/Footer'
-import Home from './pages/home/Home'
-import Product from './pages/home/components/Product'
- 
- 
+import { ThemeProvider } from './context/ThemeContext';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import About from './components/About';
+import Education from './components/Education';
+import Skills from './components/Skills';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
 
-function App() {
-
+export default function App() {
   return (
-    <>
-    <Navbar/>
-    
-    <RouterProvider router = {router}/>
-   
-    <Footer/>
-     
-
-     </>
-  )
+    <ThemeProvider>
+      <div style={{ backgroundColor: 'var(--bg)', color: 'var(--text)', minHeight: '100vh', transition: 'background-color 0.3s, color 0.3s' }}>
+        <Navbar />
+        <Hero />
+        <About />
+        <Projects />
+        <Education />
+        <Skills />
+        <Contact />
+        <footer
+          className="py-6 text-center text-xs"
+          style={{ backgroundColor: '#111', color: 'rgba(255,255,255,0.4)' }}
+        >
+          © {new Date().getFullYear()} Tayama Kirati. All rights reserved.
+        </footer>
+      </div>
+    </ThemeProvider>
+  );
 }
-
-export default App

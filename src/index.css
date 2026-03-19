@@ -1,3 +1,100 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+ 
+:root {
+  --bg:         #F5EDD6;
+  --bg-card:    #F5D9A0;
+  --bg-section: #B8860B;
+  --text:       #1a1a1a;
+  --text-muted: rgba(26,26,26,0.55);
+  --gold:       #B8860B;
+  --gold-dark:  #8B6508;
+  --border:     rgba(184,134,11,0.15);
+  --input-bg:   rgba(245,237,214,0.85);
+}
+
+
+.dark {
+  --bg:         #1a1610;
+  --bg-card:    #2a2218;
+  --bg-section: #7a5800;
+  --text:       #f0e6cc;
+  --text-muted: rgba(240,230,204,0.55);
+  --gold:       #D4A017;
+  --gold-dark:  #B8860B;
+  --border:     rgba(212,160,23,0.2);
+  --input-bg:   rgba(42,34,24,0.7);
+}
+
+ 
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+ 
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+ 
+ 
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal-left] {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal-left].revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+[data-reveal-scale] {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal-scale].revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+ 
+.typewriter-cursor::after {
+  content: '|';
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--gold);
+  animation: blink 0.75s step-start infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
