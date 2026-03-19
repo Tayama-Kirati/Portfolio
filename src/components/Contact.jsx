@@ -9,7 +9,7 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Wire up your email service (EmailJS, Formspree, etc.) here
+    
     console.log('Form submitted:', form);
     setSent(true);
     setForm({ name: '', email: '', message: '' });
@@ -26,7 +26,7 @@ export default function Contact() {
           Have a project in mind or want to collaborate? Feel free to reach out!
         </p>
 
-        {/* Contact icons */}
+         
         <div className="grid grid-cols-3 gap-6 mb-10 text-center">
           <div>
             <a href="tel:+9779808501847" className="flex flex-col items-center gap-3">
@@ -57,7 +57,7 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Social links */}
+        
         <div className="flex justify-center gap-8 mb-12">
           <a
             href="https://github.com/"
@@ -77,7 +77,7 @@ export default function Contact() {
           </a>
         </div>
 
-        {/* Contact form */}
+   
         <div className="bg-[#F5D9A0]/70 rounded-2xl p-8 border border-[#B8860B]/10">
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div>

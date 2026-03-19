@@ -1,36 +1,40 @@
+import { FaGithub } from "react-icons/fa";
+import { SiMongodb, SiPostgresql, SiMysql, SiJavascript,SiPostman, SiCplusplus, SiBlender, SiTailwindcss, SiReact, SiPython, SiFigma} from "react-icons/si";
+
+
 const skillCategories = [
   {
     title: 'Libraries and Frameworks',
     skills: [
-      { name: 'React', icon: '⚛️' },
-      { name: 'Tailwind CSS', icon: '🌊' },
+      { name: 'React', icon: <SiReact /> },
+      { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
     ],
   },
   {
     title: 'Programming Languages',
     skills: [
-      { name: 'Python', icon: '🐍' },
-      { name: 'Javascript', icon: 'JS' },
-      { name: 'C/C++', icon: null },
-      { name: 'SQL', icon: null },
+      { name: 'Python', icon: <SiPython /> },
+      { name: 'Javascript', icon: <SiJavascript /> },
+      { name: 'C/C++', icon: <SiCplusplus /> },
+      { name: 'SQL', icon: <SiPostman /> },
     ],
   },
   {
     title: 'Databases',
     skills: [
-      { name: 'MongoDB', icon: '🍃' },
-      { name: 'PostgreSQL', icon: '🐘' },
-      { name: 'MySQL', icon: '🐬' },
+      { name: 'MongoDB', icon: <SiMongodb /> },
+      { name: 'PostgreSQL', icon: <SiPostgresql /> },
+      { name: 'MySQL', icon: <SiMysql /> },
     ],
   },
   {
     title: 'Tools',
     skills: [
       { name: 'Git', icon: null },
-      { name: 'Github', icon: '' },
-      { name: 'Postman', icon: '📮' },
-      { name: 'Blender', icon: '🔵' },
-      { name: 'Figma', icon: '🎨' },
+      { name: 'Github', icon: <FaGithub /> },
+      { name: 'Postman', icon: <SiPostman /> },
+      { name: 'Blender', icon: <SiBlender /> },
+      { name: 'Figma', icon: <SiFigma/> },
     ],
   },
 ];

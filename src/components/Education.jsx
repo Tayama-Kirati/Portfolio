@@ -3,7 +3,7 @@ const education = [
     school: 'St. Xaviers College, Maitighar',
     degree: '+2 Science',
     period: 'June 2019 – December 2021',
-    gpa: '3.62 GPA',
+    // gpa: '3.62 GPA',
   },
   {
     school: 'IOE Purwanchal Campus, Dharan',

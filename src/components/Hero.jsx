@@ -9,11 +9,9 @@ export default function Hero() {
       id="home"
       className="min-h-screen flex items-center pt-16"
       style={{ backgroundColor: 'var(--text)' }}
-    >
-      {/* <Navbar /> */}
+    > 
       <div className="max-w-6xl mx-auto px-6 w-full flex flex-col md:flex-row items-center gap-8">
 
-        {/* ── Photo ── */}
         <div className="flex-shrink-0 w-40 md:w-1/2 rounded-2xl overflow-hidden shadow-lg">
            
             <img
@@ -21,16 +19,9 @@ export default function Hero() {
               alt="Tayama Kirati"
               className="w-full h-auto object-cover"
             />
-             
-          {/* <div
-            className="w-full h-[500px] flex items-center justify-center rounded-2xl text-sm font-medium"
-            style={{ backgroundColor: 'var(--bg-card)', color: 'var(--gold)', opacity: 0.5 }}
-          >
-            Your Photo Here
-          </div> */}
         </div>
 
-        {/* ── Text ── */}
+        
         <div className="flex flex-col gap-3 text-center  ">
          <p className="text-4xl font-bold text-black">
          Hello,
