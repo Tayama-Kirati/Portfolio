@@ -24,7 +24,7 @@ const skillCategories = [
     skills: [
       { name: 'MongoDB', icon: <SiMongodb /> },
       { name: 'PostgreSQL', icon: <SiPostgresql /> },
-      { name: 'MySQL', icon: <SiMysql /> },
+      { name: 'MySQL', icon: null },
     ],
   },
   {

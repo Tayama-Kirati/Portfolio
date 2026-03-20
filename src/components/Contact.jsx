@@ -1,19 +1,43 @@
 import { useState } from 'react';
 import { Phone, Mail, FileText, Github, Linkedin, Send } from 'lucide-react';
 
+ 
+
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [sent, setSent] = useState(false);
+  const [form, setForm]       = useState({ name: '', email: '', message: '' });
+  const [loading, setLoading] = useState(false);
+  const [error, setError]     = useState('');
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+ 
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    console.log('Form submitted:', form);
-    setSent(true);
-    setForm({ name: '', email: '', message: '' });
-    setTimeout(() => setSent(false), 4000);
+    setError('');
+    setLoading(true);
+
+    try {
+      const response = await fetch(`http://localhost:8000/api/contact`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(form),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        const msg = data.errors ? data.errors.join('\n') : data.error;
+        setError(msg || 'Something went wrong. Please try again.');
+        return;
+      }
+      alert(`${data.message}`);
+      setForm({ name: '', email: '', message: '' });
+
+    } catch (err) {
+      setError('Could not reach the server. Make sure the backend is running.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -26,7 +50,7 @@ export default function Contact() {
           Have a project in mind or want to collaborate? Feel free to reach out!
         </p>
 
-         
+        {/* Contact icons */}
         <div className="grid grid-cols-3 gap-6 mb-10 text-center">
           <div>
             <a href="tel:+9779808501847" className="flex flex-col items-center gap-3">
@@ -57,78 +81,63 @@ export default function Contact() {
           </div>
         </div>
 
-        
+        {/* Social links */}
         <div className="flex justify-center gap-8 mb-12">
-          <a
-            href="https://github.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2 text-sm font-medium text-[#1a1a1a]/70 hover:text-[#B8860B] transition-colors"
-          >
+          <a href="https://github.com/" target="_blank" rel="noreferrer"
+            className="flex items-center gap-2 text-sm font-medium text-[#1a1a1a]/70 hover:text-[#B8860B] transition-colors">
             <Github size={18} /> Github
           </a>
-          <a
-            href="https://linkedin.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2 text-sm font-medium text-[#1a1a1a]/70 hover:text-[#B8860B] transition-colors"
-          >
+          <a href="https://linkedin.com/" target="_blank" rel="noreferrer"
+            className="flex items-center gap-2 text-sm font-medium text-[#1a1a1a]/70 hover:text-[#B8860B] transition-colors">
             <Linkedin size={18} /> LinkedIn
           </a>
         </div>
 
-   
+         
         <div className="bg-[#F5D9A0]/70 rounded-2xl p-8 border border-[#B8860B]/10">
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+
             <div>
               <label className="block text-[#B8860B] font-semibold text-sm mb-2">Name</label>
               <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                placeholder="Your Name"
-                required
+                type="text" name="name" value={form.name} onChange={handleChange}
+                placeholder="Your Name" required
                 className="w-full bg-[#F5EDD6]/80 rounded-xl px-4 py-3 text-sm placeholder:text-[#1a1a1a]/30 focus:outline-none focus:ring-2 focus:ring-[#B8860B]/40 transition"
               />
             </div>
+
             <div>
               <label className="block text-[#B8860B] font-semibold text-sm mb-2">Email</label>
               <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="example@gmail.com"
-                required
+                type="email" name="email" value={form.email} onChange={handleChange}
+                placeholder="example@gmail.com" required
                 className="w-full bg-[#F5EDD6]/80 rounded-xl px-4 py-3 text-sm placeholder:text-[#1a1a1a]/30 focus:outline-none focus:ring-2 focus:ring-[#B8860B]/40 transition"
               />
             </div>
+
             <div>
               <label className="block text-[#B8860B] font-semibold text-sm mb-2">Message</label>
               <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                placeholder="Your message here....."
-                rows={5}
-                required
+                name="message" value={form.message} onChange={handleChange}
+                placeholder="Your message here....." rows={5} required
                 className="w-full bg-[#F5EDD6]/80 rounded-xl px-4 py-3 text-sm placeholder:text-[#1a1a1a]/30 focus:outline-none focus:ring-2 focus:ring-[#B8860B]/40 transition resize-none"
               />
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-[#B8860B] text-white rounded-xl py-4 font-semibold text-sm flex items-center justify-center gap-2 hover:bg-[#8B6508] transition-colors duration-200 shadow-md"
-            >
-              Send Message <Send size={16} />
-            </button>
-
-            {sent && (
-              <p className="text-center text-[#B8860B] font-medium text-sm">
-                ✓ Message sent! I'll get back to you soon.
+            
+            {error && (
+              <p className="text-red-600 text-sm font-medium bg-red-50 rounded-xl px-4 py-3 border border-red-200">
+                ⚠️ {error}
               </p>
             )}
+
+            <button
+              type="submit" disabled={loading}
+              className="w-full bg-[#B8860B] text-white rounded-xl py-4 font-semibold text-sm flex items-center justify-center gap-2 hover:bg-[#8B6508] transition-colors duration-200 shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {loading ? 'Sending…' : <><Send size={16} /> Send Message</>}
+            </button>
+
           </form>
         </div>
       </div>

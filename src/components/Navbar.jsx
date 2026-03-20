@@ -14,7 +14,7 @@ export default function Navbar() {
   }, []);
 
   const scrollTo = (id) => {
-    const el = document.getElementById(id.toLowerCase().replace(' ', '-'));
+   const el = document.getElementById(id.toLowerCase().replace(/ /g, '-'));
     if (el) el.scrollIntoView({ behavior: 'smooth' });
     setMobileOpen(false);
   };

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tayama Kirati – Portfolio API</title>
+  <style>
+    body { font-family: sans-serif; background: #F5EDD6; color: #1a1a1a; padding: 40px; }
+    h1   { color: #B8860B; }
+    code { background: #e8d5a0; padding: 2px 6px; border-radius: 4px; }
+    li   { margin: 8px 0; }
+  </style>
+</head>
+<body>
+  <h1>Tayama Kirati – Portfolio API</h1>
+  <p>This static page is served by Express using <code>fs.readFile()</code>.</p>
+  <h2>Available Endpoints</h2>
+  <ul>
+    <li><code>GET  /api/projects</code> – All projects</li>
+    <li><code>GET  /api/education</code> – Education history</li>
+    <li><code>POST /api/contact</code> – Submit a contact message</li>
+    <li><code>GET  /api/greet?name=Tayama</code> – Dynamic greeting</li>
+    <li><code>GET  /api/admin/messages</code> – (Protected) View messages</li>
+  </ul>
+</body>
+</html>
