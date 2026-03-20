@@ -13,7 +13,6 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto px-6 w-full flex flex-col md:flex-row items-center gap-8">
 
         <div className="flex-shrink-0 w-40 md:w-1/2 rounded-2xl overflow-hidden shadow-lg">
-           
             <img
               src={Tayama}
               alt="Tayama Kirati"

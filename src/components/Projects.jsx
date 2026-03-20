@@ -76,7 +76,7 @@ export default function Projects() {
           value={search}
           onChange={e => setSearch(e.target.value)}
           placeholder="Search projects…"
-          className="mb-10 w-full max-w-sm bg-[#F5D9A0]/60 rounded-xl px-4 py-3 text-sm border border-[#B8860B]/20 focus:outline-none focus:ring-2 focus:ring-[#B8860B]/40 transition"
+          className="mb-10 w-full max-w-sm bg-[#F5D9A0]/60 rounded-xl px-4 py-3 text-sm border text-black border-[#B8860B]/20 focus:outline-none focus:ring-2 focus:ring-[#B8860B]/40 transition"
         />
 
         {loading && <p className="text-[#B8860B]/60 text-sm">Loading projects…</p>}

@@ -24,7 +24,7 @@ const skillCategories = [
     skills: [
       { name: 'MongoDB', icon: <SiMongodb /> },
       { name: 'PostgreSQL', icon: <SiPostgresql /> },
-      { name: 'MySQL', icon: null },
+      { name: 'MySQL', icon: <SiMysql /> },
     ],
   },
   {
@@ -50,7 +50,7 @@ function SkillBadge({ name, icon }) {
 
 export default function Skills() {
   return (
-    <section id="skills" className="bg-[#F5EDD6] py-24 px-6">
+    <section id="skills" className="bg-[#FFE9B1] py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <h2 className="font-display text-4xl md:text-5xl font-bold text-[#B8860B] mb-12">Skills</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
