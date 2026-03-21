@@ -7,6 +7,9 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 
+
+export const API_URL = import.meta.env.API_URL || 'http://localhost:8000/api';
+
 export default function App() {
   return (
     <ThemeProvider>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { API_URL } from '../App';
 
 export default function Education() {
   const [education, setEducation] = useState([]);
@@ -8,7 +9,7 @@ export default function Education() {
   useEffect(() => {
     const fetchEducation = async () => {
       try {
-        const res = await fetch('http://localhost:8000/api/education');
+        const res = await fetch(`${API_URL}/education`);
         const data = await res.json();
         setEducation(data.data || []);
       } catch (err) {

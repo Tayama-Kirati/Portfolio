@@ -1,4 +1,6 @@
  import { useState, useEffect } from 'react';
+import { API_URL } from '../App';
+
 
 function ProjectCard({ title, description, link, image_url }) {
   return (
@@ -40,8 +42,8 @@ export default function Projects() {
       setError('');
       try {
         const url = search
-          ? `http://localhost:8000/api/projects?title=${encodeURIComponent(search)}`
-          : `http://localhost:8000/api/projects`;
+          ? `${API_URL}/projects?title=${encodeURIComponent(search)}`
+          : `${API_URL}/projects`;
 
         const res  = await fetch(url, { signal: controller.signal });
         const data = await res.json();

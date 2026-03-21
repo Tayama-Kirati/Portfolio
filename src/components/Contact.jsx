@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Phone, Mail, FileText, Github, Linkedin, Send } from 'lucide-react';
-
+import { API_URL } from '../App';
  
 
 export default function Contact() {
@@ -17,7 +17,7 @@ export default function Contact() {
     setLoading(true);
 
     try {
-      const response = await fetch(`http://localhost:8000/api/contact`, {
+      const response = await fetch(`${API_URL}/contact`, {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify(form),
