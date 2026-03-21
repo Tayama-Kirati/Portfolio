@@ -9,7 +9,7 @@ export default function Education() {
   useEffect(() => {
     const fetchEducation = async () => {
       try {
-        const res = await fetch(`${API_URL}/api/education`);
+        const res = await fetch(`${API_URL}/education`);
         const data = await res.json();
         setEducation(data.data || []);
       } catch (err) {
