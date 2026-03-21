@@ -42,8 +42,8 @@ export default function Projects() {
       setError('');
       try {
         const url = search
-          ? `${API_URL}/projects?title=${encodeURIComponent(search)}`
-          : `${API_URL}/projects`;
+          ? `${API_URL}/api/projects?title=${encodeURIComponent(search)}`
+          : `${API_URL}/api/projects`;
 
         const res  = await fetch(url, { signal: controller.signal });
         const data = await res.json();
