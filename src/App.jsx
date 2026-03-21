@@ -1,4 +1,4 @@
-// import { ThemeProvider } from './context/Themecontext'; 
+import { ThemeProvider } from './context/Themecontext';  
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -9,7 +9,7 @@ import Contact from './components/Contact';
 
 export default function App() {
   return (
-    // <ThemeProvider>
+    <ThemeProvider>
       <div style={{ backgroundColor: 'var(--bg)', color: 'var(--text)', minHeight: '100vh', transition: 'background-color 0.3s, color 0.3s' }}>
         <Navbar />
         <Hero />
@@ -25,6 +25,6 @@ export default function App() {
           © {new Date().getFullYear()} Tayama Kirati. All rights reserved.
         </footer>
       </div>
-    // </ThemeProvider>
+    </ThemeProvider>
   );
 }
