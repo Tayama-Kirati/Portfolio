@@ -4,12 +4,6 @@ import mongoose from "mongoose";
 import Project from "../models/Projects.js";
 import Education from "../models/Education.js";
 
-// dotenv.config({ path: "../.env" });require('dotenv').config({ path: '../.env' });
-// const mongoose  = require('mongoose');
-// const Project   = require('../models/Projects');
-// const Education = require('../models/Education');
- 
- 
 const projects = [
   {
     title:       'Food Delivery App',

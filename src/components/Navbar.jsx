@@ -24,7 +24,6 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <span className="font-display font-bold text-xl text-[#1a1a1a]">Portfolio</span>
 
-        {/* Desktop */}
         <ul className="hidden md:flex gap-8">
           {navLinks.map((link) => (
             <li key={link}>
@@ -38,7 +37,6 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Mobile */}
         <button className="md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>

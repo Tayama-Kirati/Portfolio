@@ -50,7 +50,7 @@ export default function Contact() {
           Have a project in mind or want to collaborate? Feel free to reach out!
         </p>
 
-        {/* Contact icons */}
+        
         <div className="grid grid-cols-3 gap-6 mb-10 text-center">
           <div>
             <a href="tel:+9779808501847" className="flex flex-col items-center gap-3">
@@ -81,10 +81,10 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Social links */}
+       
         <div className="flex justify-center gap-8 mb-12">
           <a href="https://github.com/" target="_blank" rel="noreferrer"
-            className="flex items-center gap-2 text-sm font-medium text-[#1a1a1a]/70 hover:text-[#B8860B] transition-colors">
+            className="flex items-center gap-2 text-sm font-medium text-[#1a1a1a]/70 hover:text-[rgb(184,134,11)] transition-colors">
             <Github size={18} /> Github
           </a>
           <a href="https://linkedin.com/" target="_blank" rel="noreferrer"
@@ -127,7 +127,7 @@ export default function Contact() {
             
             {error && (
               <p className="text-red-600 text-sm font-medium bg-red-50 rounded-xl px-4 py-3 border border-red-200">
-                ⚠️ {error}
+             {error}
               </p>
             )}
 
