@@ -7,8 +7,7 @@ export default function Hero() {
      
     <section
       id="home"
-      className="min-h-screen flex items-center pt-16"
-      style={{ backgroundColor: 'var(--text)' }}
+      className="min-h-screen flex items-center pt-16 bg-[#F5EDD6]" 
     > 
       <div className="max-w-6xl mx-auto px-6 w-full flex flex-col md:flex-row items-center gap-8">
 

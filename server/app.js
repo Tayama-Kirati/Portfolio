@@ -14,8 +14,8 @@ const PORT = process.env.PORT || 8000;
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('✅ MongoDB connected!'))
-  .catch((err) => console.log('❌ MongoDB failed:', err.message));
+  .then(() => console.log('MongoDB connected!'))
+  .catch((err) => console.log('MongoDB failed:', err.message));
 
 // MIDDLEWARE
 app.use(cors({
@@ -57,7 +57,7 @@ app.use((err, req, res, next) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`✅ Server listening on Port ${PORT}`);
+  console.log(`Server listening on Port ${PORT}`);
 });
 
 module.exports = app;
