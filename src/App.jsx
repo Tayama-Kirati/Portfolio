@@ -6,7 +6,7 @@ import Education from './components/Education';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
-import ResumeButton from './components/Resume';
+// import ResumeButton from './components/Resume';
 
 export const API_URL = import.meta.env.VITE_API_URL || 'https://tayama-hefh.onrender.com/api';
 
@@ -21,7 +21,7 @@ export default function App() {
         <Education />
         <Skills />
         <Contact />
-        <ResumeButton  />
+        {/* <ResumeButton  /> */}
     
         <footer
           className="py-6 text-center text-xs"
