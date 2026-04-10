@@ -18,6 +18,7 @@ export default function About() {
         >
           Contact Me
         </a>
+        
       </div>
     </section>
   );

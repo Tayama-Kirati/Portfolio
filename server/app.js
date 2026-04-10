@@ -24,6 +24,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
+
+if (!fs.existsSync('uploads')) fs.mkdirSync('uploads');
+
+app.get('/downloads', (req, res) => {
+  const file = path.join(__dirname, 'uploads', 'resume.pdf');  
+  if (fs.existsSync(file)) {
+    res.download(file);
+  } else {
+    res.status(404).json({ message: 'Resume not found' });
+  }
+});
+
+ 
+
+
 app.use('/api/contact',   contactRoutes);
 app.use('/api/projects',  projectRoutes);
 app.use('/api/education', educationRoutes);
@@ -55,5 +70,6 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Server listening on Port ${PORT}`);
 });
+
 
 module.exports = app;
