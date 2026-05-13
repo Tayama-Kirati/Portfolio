@@ -6,14 +6,24 @@ import Education from "../models/Education.js";
 
 const projects = [
   {
-    title:       'Food Delivery App',
-    description: 'I designed a Food Delivery App with a clean, intuitive interface focused on seamless user experience. The design covers browsing restaurants, ordering food, and real-time tracking — all crafted in Figma.',
-    link:        '#',
+    title:       'Food Ordering System',
+    description: 'I designed a Food Ordering System with a clean, intuitive interface focused on seamless user experience. The design covers browsing restaurants, ordering food, and real-time tracking — all crafted in Figma.',
+    link:        'https://github.com/Tayama-Kirati/MetMoMo',
+  },
+  // {
+  //   title:       'Portfolio Website',
+  //   description: 'Designed and developed a personal portfolio website to showcase projects, skills, and education. Built with React, Vite, and Tailwind CSS.',
+  //   link:        'https://tayama.vercel.app',
+  // },
+  {
+    title:       'E-Commerce Platform',
+    description: 'I designed an E-Commerce Platform with a clean, intuitive interface focused on seamless user experience. The design covers browsing products, adding to cart, and checkout — all crafted in Figma.',
+    link:        'https://github.com/Tayama-Kirati/MetMoMo',
   },
   {
-    title:       'Portfolio Website',
-    description: 'Designed and developed a personal portfolio website to showcase projects, skills, and education. Built with React, Vite, and Tailwind CSS.',
-    link:        '#',
+    title:       'Rock Paper Scissors Game',
+    description: 'I designed a Rock Paper Scissors Game with a clean, intuitive interface focused on seamless user experience. The design covers gameplay, scoring, and animations — all crafted in Figma.',
+    link:        'https://github.com/Tayama-Kirati/RockPaperScissors',
   },
 ];
 
