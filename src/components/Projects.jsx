@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { API_URL } from '../App';
 import khimImg      from '../assets/khim.png';
 import metmomoImg   from '../assets/metmomo.png';
@@ -12,30 +12,69 @@ const LOCAL_IMAGES = {
   'Portfolio Website':              portfolioImg,
 };
 
+function Lightbox({ src, alt, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+      onClick={onClose}
+    >
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-5 text-white/70 hover:text-white text-3xl font-light leading-none"
+        aria-label="Close"
+      >
+        &times;
+      </button>
+      <img
+        src={src}
+        alt={alt}
+        className="max-w-full max-h-[90vh] rounded-2xl shadow-2xl object-contain"
+        onClick={(e) => e.stopPropagation()}
+      />
+    </div>
+  );
+}
+
 function ProjectCard({ title, description, link, image_url }) {
   const src = image_url || LOCAL_IMAGES[title];
-  return (
-    <div className="bg-[#F5D9A0]/60 rounded-2xl p-7 flex flex-col md:flex-row items-start md:items-center gap-6 border border-[#B8860B]/10">
-      <div className="flex-1">
-        <h3 className="font-display text-2xl font-bold text-[#1a1a1a] mb-3">{title}</h3>
-        <p className="text-[#1a1a1a]/70 text-sm leading-relaxed mb-6">{description}</p>
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const openLightbox  = useCallback(() => src && setLightboxOpen(true),  [src]);
+  const closeLightbox = useCallback(() => setLightboxOpen(false), []);
 
-        <a href={link || '#'}
-          className="inline-block px-6 py-2.5 bg-[#B8860B] text-white rounded-lg font-semibold text-sm hover:bg-[#8B6508] transition-colors duration-200 shadow"
+  return (
+    <>
+      {lightboxOpen && <Lightbox src={src} alt={title} onClose={closeLightbox} />}
+      <div className="bg-[#F5D9A0]/60 rounded-2xl p-7 flex flex-col md:flex-row items-start md:items-center gap-6 border border-[#B8860B]/10">
+        <div className="flex-1">
+          <h3 className="font-display text-2xl font-bold text-[#1a1a1a] mb-3">{title}</h3>
+          <p className="text-[#1a1a1a]/70 text-sm leading-relaxed mb-6">{description}</p>
+
+          <a href={link || '#'}
+            className="inline-block px-6 py-2.5 bg-[#B8860B] text-white rounded-lg font-semibold text-sm hover:bg-[#8B6508] transition-colors duration-200 shadow"
+          >
+            View My Work
+          </a>
+        </div>
+        <div
+          className={`w-full md:w-64 lg:w-80 h-44 rounded-xl overflow-hidden bg-[#E8D5A8] flex-shrink-0 shadow ${src ? 'cursor-zoom-in' : ''}`}
+          onClick={openLightbox}
         >
-          View My Work
-        </a>
+          {src ? (
+            <img src={src} alt={title} className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-[#B8860B]/40 text-xs font-medium">
+              Project Preview
+            </div>
+          )}
+        </div>
       </div>
-      <div className="w-full md:w-64 lg:w-80 h-44 rounded-xl overflow-hidden bg-[#E8D5A8] flex-shrink-0 shadow">
-        {src ? (
-          <img src={src} alt={title} className="w-full h-full object-cover" />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-[#B8860B]/40 text-xs font-medium">
-            Project Preview
-          </div>
-        )}
-      </div>
-    </div>
+    </>
   );
 }
 
