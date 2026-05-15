@@ -1,14 +1,25 @@
- import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { API_URL } from '../App';
+import khimImg      from '../assets/khim.png';
+import metmomoImg   from '../assets/metmomo.png';
+import peanutImg    from '../assets/peanut.png';
+import portfolioImg from '../assets/portfolio.png';
 
+const LOCAL_IMAGES = {
+  'Khim : Home Management System': khimImg,
+  'MetMomo : Food Ordering System': metmomoImg,
+  'PeaNut : E-Commerce Platform':   peanutImg,
+  'Portfolio Website':              portfolioImg,
+};
 
 function ProjectCard({ title, description, link, image_url }) {
+  const src = image_url || LOCAL_IMAGES[title];
   return (
     <div className="bg-[#F5D9A0]/60 rounded-2xl p-7 flex flex-col md:flex-row items-start md:items-center gap-6 border border-[#B8860B]/10">
       <div className="flex-1">
         <h3 className="font-display text-2xl font-bold text-[#1a1a1a] mb-3">{title}</h3>
         <p className="text-[#1a1a1a]/70 text-sm leading-relaxed mb-6">{description}</p>
-        
+
         <a href={link || '#'}
           className="inline-block px-6 py-2.5 bg-[#B8860B] text-white rounded-lg font-semibold text-sm hover:bg-[#8B6508] transition-colors duration-200 shadow"
         >
@@ -16,8 +27,8 @@ function ProjectCard({ title, description, link, image_url }) {
         </a>
       </div>
       <div className="w-full md:w-64 lg:w-80 h-44 rounded-xl overflow-hidden bg-[#E8D5A8] flex-shrink-0 shadow">
-        {image_url ? (
-          <img src={image_url} alt={title} className="w-full h-full object-cover" />
+        {src ? (
+          <img src={src} alt={title} className="w-full h-full object-cover" />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-[#B8860B]/40 text-xs font-medium">
             Project Preview
