@@ -62,7 +62,7 @@ function ProjectCard({ title, description, link, image_url }) {
           </a>
         </div>
         <div
-          className="w-full md:w-64 lg:w-80 h-44 rounded-xl overflow-hidden bg-[#E8D5A8] flex-shrink-0 shadow relative group"
+          className="w-full md:w-64 lg:w-80 h-44 rounded-xl overflow-hidden bg-[#E8D5A8] flex-shrink-0 shadow relative group transition-transform duration-300 hover:scale-110"
           onClick={() => src && setLightboxOpen(true)}
           style={src ? { cursor: 'zoom-in' } : {}}
         >
@@ -71,7 +71,7 @@ function ProjectCard({ title, description, link, image_url }) {
               <img
                 src={src}
                 alt={title}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                 <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-3xl drop-shadow">

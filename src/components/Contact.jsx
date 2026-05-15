@@ -71,14 +71,14 @@ export default function Contact() {
             </a>
           </div>
           <div>
-            <a href="/cv.pdf" download className="flex flex-col items-center gap-3">
+            <a href={resume} download="Tayama_Kirati_CV.pdf" className="flex flex-col items-center gap-3">
               <span className="w-16 h-16 rounded-full bg-[#B8860B] flex items-center justify-center shadow hover:bg-[#8B6508] transition-colors">
                 <FileText size={24} className="text-white" />
               </span>
               <span className="font-semibold text-sm">CV</span>
-              <a href={resume} download className="text-xs text-[#1a1a1a]/60 hover:text-[#B8860B] transition-colors">
+              <span className="text-xs text-[#1a1a1a]/60 hover:text-[#B8860B] transition-colors">
                 Download CV
-              </a>
+              </span>
             </a>
           </div>
         </div>
