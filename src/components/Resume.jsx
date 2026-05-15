@@ -1,14 +1,16 @@
 import { Download, FileText } from 'lucide-react';
+import React from 'react';
+// import Tayama_CV from '../assets/Tayama_CV.pdf';
 
-const RESUME_PATH = '/resume.pdf';
+const RESUME_PATH = '/Tayama_CV.pdf';
 
 export default function Resume() {
   return (
-    <section id="resume" className="bg-[#1a1a1a] py-24 px-6">
+    <section id="resume" className="bg-[#F5EDD6] py-24 px-6">
       <div className="max-w-4xl mx-auto">
         <h2 className="font-display text-4xl md:text-5xl font-bold text-[#B8860B] text-center mb-3">
-          Resume
-        </h2>
+          Resume </h2>
+
         <p className="text-center text-white/50 mb-10 text-sm">
           View my resume below or download a copy.
         </p>
@@ -37,7 +39,7 @@ export default function Resume() {
           />
         </div>
 
-        <p className="text-center text-white/30 text-xs mt-4">
+        <p className="text-center text-black text-xs mt-4">
           If the preview doesn't load, please{' '}
           <a
             href={RESUME_PATH}
@@ -50,5 +52,5 @@ export default function Resume() {
         </p>
       </div>
     </section>
-  );
+);
 }
