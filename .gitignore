@@ -24,7 +24,7 @@ dist-ssr
 *.sw?
 
 
- 
+ seed.js
  
  .env
  .env.local
