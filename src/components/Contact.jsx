@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Phone, Mail, FileText, Github, Linkedin, Send } from 'lucide-react';
 import { API_URL } from '../App';
- 
+import resume from '../assets/resume.pdf';
 
 export default function Contact() {
   const [form, setForm]       = useState({ name: '', email: '', message: '' });
@@ -76,7 +76,9 @@ export default function Contact() {
                 <FileText size={24} className="text-white" />
               </span>
               <span className="font-semibold text-sm">CV</span>
-              <span className="text-xs text-[#1a1a1a]/60">Download CV</span>
+              <a href={resume} download className="text-xs text-[#1a1a1a]/60 hover:text-[#B8860B] transition-colors">
+                Download CV
+              </a>
             </a>
           </div>
         </div>

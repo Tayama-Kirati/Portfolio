@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { API_URL } from '../App';
 import khimImg      from '../assets/khim.png';
 import metmomoImg   from '../assets/metmomo.png';
@@ -19,14 +20,14 @@ function Lightbox({ src, alt, onClose }) {
     return () => document.removeEventListener('keydown', onKey);
   }, [onClose]);
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+      style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}
       onClick={onClose}
     >
       <button
         onClick={onClose}
-        className="absolute top-4 right-5 text-white/70 hover:text-white text-3xl font-light leading-none"
+        style={{ position: 'absolute', top: '1rem', right: '1.25rem', color: 'white', fontSize: '2rem', background: 'none', border: 'none', cursor: 'pointer', lineHeight: 1 }}
         aria-label="Close"
       >
         &times;
@@ -34,22 +35,21 @@ function Lightbox({ src, alt, onClose }) {
       <img
         src={src}
         alt={alt}
-        className="max-w-full max-h-[90vh] rounded-2xl shadow-2xl object-contain"
+        style={{ maxWidth: '100%', maxHeight: '90vh', borderRadius: '1rem', boxShadow: '0 25px 60px rgba(0,0,0,0.5)', objectFit: 'contain' }}
         onClick={(e) => e.stopPropagation()}
       />
-    </div>
+    </div>,
+    document.body
   );
 }
 
 function ProjectCard({ title, description, link, image_url }) {
   const src = image_url || LOCAL_IMAGES[title];
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const openLightbox  = useCallback(() => src && setLightboxOpen(true),  [src]);
-  const closeLightbox = useCallback(() => setLightboxOpen(false), []);
 
   return (
     <>
-      {lightboxOpen && <Lightbox src={src} alt={title} onClose={closeLightbox} />}
+      {lightboxOpen && <Lightbox src={src} alt={title} onClose={() => setLightboxOpen(false)} />}
       <div className="bg-[#F5D9A0]/60 rounded-2xl p-7 flex flex-col md:flex-row items-start md:items-center gap-6 border border-[#B8860B]/10">
         <div className="flex-1">
           <h3 className="font-display text-2xl font-bold text-[#1a1a1a] mb-3">{title}</h3>
@@ -62,11 +62,23 @@ function ProjectCard({ title, description, link, image_url }) {
           </a>
         </div>
         <div
-          className={`w-full md:w-64 lg:w-80 h-44 rounded-xl overflow-hidden bg-[#E8D5A8] flex-shrink-0 shadow ${src ? 'cursor-zoom-in' : ''}`}
-          onClick={openLightbox}
+          className="w-full md:w-64 lg:w-80 h-44 rounded-xl overflow-hidden bg-[#E8D5A8] flex-shrink-0 shadow relative group"
+          onClick={() => src && setLightboxOpen(true)}
+          style={src ? { cursor: 'zoom-in' } : {}}
         >
           {src ? (
-            <img src={src} alt={title} className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
+            <>
+              <img
+                src={src}
+                alt={title}
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-3xl drop-shadow">
+                  🔍
+                </span>
+              </div>
+            </>
           ) : (
             <div className="w-full h-full flex items-center justify-center text-[#B8860B]/40 text-xs font-medium">
               Project Preview
