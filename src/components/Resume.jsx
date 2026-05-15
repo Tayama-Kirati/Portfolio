@@ -31,12 +31,19 @@ export default function Resume() {
             <FileText size={16} className="text-[#B8860B]" />
             <span className="text-white/60 text-xs">Tayama_Kirati_Resume.pdf</span>
           </div>
-          <iframe
-            src={`${RESUME_PATH}#toolbar=0&navpanes=0&scrollbar=1`}
-            title="Resume"
+          <object
+            data={`${RESUME_PATH}#toolbar=0&navpanes=0&scrollbar=1`}
+            type="application/pdf"
             className="w-full"
             style={{ height: '85vh', minHeight: '600px' }}
-          />
+          >
+            <p className="text-white/60 text-sm text-center py-10">
+              PDF preview not supported in this browser.{' '}
+              <a href={RESUME_PATH} download="Tayama_Kirati_Resume.pdf" className="text-[#B8860B] underline">
+                Download it here.
+              </a>
+            </p>
+          </object>
         </div>
 
         <p className="text-center text-black text-xs mt-4">
