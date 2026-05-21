@@ -76,16 +76,9 @@ export default function Contact() {
                 <FileText size={24} className="text-white" />
               </span>
               <span className="font-semibold text-sm">CV</span>
-             <div className="flex justify-center mb-8">
-          <a
-            href={RESUME_PATH}
-            download="Tayama_Kirati_Resume.pdf"
-            className="inline-flex items-center gap-2 bg-[#B8860B] hover:bg-[#8B6508] text-white font-semibold text-sm px-6 py-3 rounded-full shadow-lg transition-colors duration-200"
-          >
-            <Download size={16} />
-            Download Resume
-          </a>
-        </div>
+              <span className="text-xs text-[#1a1a1a]/60 hover:text-[#B8860B] transition-colors">
+                Download CV
+              </span>
             </a>
           </div>
         </div>
