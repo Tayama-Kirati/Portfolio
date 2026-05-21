@@ -22,7 +22,12 @@ export default function Navbar() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#F5EDD6]/95 backdrop-blur-sm shadow-sm' : 'bg-transparent'}`}>
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <span className="font-display font-bold text-xl text-[#1a1a1a]">Portfolio</span>
+        <button
+          onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}
+          className="font-display font-bold text-xl text-[#1a1a1a] hover:text-[#B8860B] transition-colors duration-200"
+        >
+          Portfolio
+        </button>
 
         <ul className="hidden md:flex gap-8">
           {navLinks.map((link) => (
