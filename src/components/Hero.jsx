@@ -7,6 +7,8 @@ const ROLES = [
   'A Frontend Developer.',
   'A Product Developer.',
   'A Problem Solver.',
+  'A MERN Stack Developer.',
+  "A NEXT.js Developer.",
 ];
 
 export default function Hero() {
