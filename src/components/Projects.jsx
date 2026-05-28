@@ -5,12 +5,17 @@ import khimImg      from '../assets/khim.png';
 import metmomoImg   from '../assets/metmomo.png';
 import peanutImg    from '../assets/peanut.png';
 import portfolioImg from '../assets/portfolio.png';
+import myspace2Img   from '../assets/myspace.png';
+import rockpaperscissorsImg   from '../assets/rockpaperscissors.png';
+
 
 const LOCAL_IMAGES = {
   'Khim : Home Management System': khimImg,
   'MetMomo : Food Ordering System': metmomoImg,
   'PeaNut : E-Commerce Platform':   peanutImg,
   'Portfolio Website':              portfolioImg,
+  'MySpace: Ghibli-themed personal productivity and lifestyle website': myspace2Img,
+  'Rock Paper Scissors Game':        rockpaperscissorsImg,
 };
 
 function Lightbox({ src, alt, onClose }) {

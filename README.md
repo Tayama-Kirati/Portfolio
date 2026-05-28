@@ -1,16 +1,71 @@
-# React + Vite
+# Tayama Kirati — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal portfolio website built with React, Vite, and Tailwind CSS. Showcases projects, skills, education, and contact info — with a Node.js/Express backend for dynamic project management.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Frontend**
+- React 19 + Vite
+- Tailwind CSS
+- React Router DOM
+- Lucide React & React Icons
+- React Hot Toast
 
-## React Compiler
+**Backend**
+- Node.js + Express 5
+- MongoDB (primary database)
+- PostgreSQL / MySQL (supported)
+- JWT Authentication
+- Multer (file uploads)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- Animated typewriter hero with rotating roles
+- Dynamic projects section fetched from API with live search
+- Skills grid with scroll-reveal animations
+- Lightbox image previewer for project screenshots
+- Resume download
+- Contact form
+- Dark/light theme context
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+ 
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- MongoDB instance (local or Atlas)
+
+### Installation
+
+```bash
+git clone https://github.com/your-username/portfolio.git
+cd portfolio
+npm install
+```
+
+### Environment Variables
+
+Create a `.env` file in the root:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+### Run Locally
+
+```bash
+npm run dev
+```
+
+ 
+
+### Build for Production
+
+```bash
+npm run build
+npm run preview
+```
+
+ 

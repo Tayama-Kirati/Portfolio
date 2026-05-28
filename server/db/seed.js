@@ -21,6 +21,11 @@ const projects = [
     link:        'https://github.com/Tayama-Kirati/E-Commerce',
   },
   {
+    title:       'MySpace: Ghibli-themed personal productivity and lifestyle website',
+    description: 'My Space is a Ghibli-themed personal productivity and lifestyle websitebuilt with React, featuring five integrated modules — daily journal, focus timer (Pomodoro), book shelf, memory gallery, and movie log. Designed as a private all-in-one digital space to replace scattered productivity tools with a cosy, nature-inspired interface.',
+    link:        'https://github.com/Tayama-Kirati/My-Space',
+  },
+  {
     title:       'Rock Paper Scissors Game',
     description: 'I designed a Rock Paper Scissors Game with a clean, intuitive interface focused on seamless user experience. The design covers gameplay, scoring, and animations — all crafted in Figma.',
     link:        'https://github.com/Tayama-Kirati/RockPaperScissors',
