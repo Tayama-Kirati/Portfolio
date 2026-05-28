@@ -1,33 +1,51 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { API_URL } from '../App';
-import khimImg      from '../assets/khim.png';
-import metmomoImg   from '../assets/metmomo.png';
-import peanutImg    from '../assets/peanut.png';
-import portfolioImg from '../assets/portfolio.png';
-import myspace2Img   from '../assets/myspace.png';
-import rockpaperscissorsImg   from '../assets/rockpaperscissors.png';
+import khimImg            from '../assets/khim.png';
+import metmomoImg         from '../assets/metmomo.png';
+import peanutImg          from '../assets/peanut.png';
+import portfolioImg       from '../assets/portfolio.png';
+import myspaceImg         from '../assets/myspace.png';
+import myspace2Img        from '../assets/Myspace2.png';
+import rockscissorpaperImg from '../assets/rockscissorpaper.png';
 
-
+// Map project titles to arrays of images. Add more to any array for a carousel.
 const LOCAL_IMAGES = {
-  'Khim : Home Management System': khimImg,
-  'MetMomo : Food Ordering System': metmomoImg,
-  'PeaNut : E-Commerce Platform':   peanutImg,
-  'Portfolio Website':              portfolioImg,
-  'MySpace: Ghibli-themed personal productivity and lifestyle website': myspace2Img,
-  'Rock Paper Scissors Game':        rockpaperscissorsImg,
+  'Khim : Home Management System': [khimImg],
+  'MetMomo : Food Ordering System': [metmomoImg],
+  'PeaNut : E-Commerce Platform':   [peanutImg],
+  'Portfolio Website':              [portfolioImg],
+  'MySpace: Ghibli-themed personal productivity and lifestyle website': [myspaceImg, myspace2Img],
+  'Rock Paper Scissors Game':       [rockscissorpaperImg],
 };
 
-function Lightbox({ src, alt, onClose }) {
+function Lightbox({ images, startIndex, alt, onClose }) {
+  const [idx, setIdx] = useState(startIndex);
+  const multi = images.length > 1;
+
+  const prev = useCallback((e) => {
+    e.stopPropagation();
+    setIdx(i => (i - 1 + images.length) % images.length);
+  }, [images.length]);
+
+  const next = useCallback((e) => {
+    e.stopPropagation();
+    setIdx(i => (i + 1) % images.length);
+  }, [images.length]);
+
   useEffect(() => {
-    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    const onKey = (e) => {
+      if (e.key === 'Escape')     onClose();
+      if (e.key === 'ArrowLeft')  setIdx(i => (i - 1 + images.length) % images.length);
+      if (e.key === 'ArrowRight') setIdx(i => (i + 1) % images.length);
+    };
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
-  }, [onClose]);
+  }, [onClose, images.length]);
 
   return createPortal(
     <div
-      style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}
+      style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.88)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}
       onClick={onClose}
     >
       <button
@@ -37,61 +55,142 @@ function Lightbox({ src, alt, onClose }) {
       >
         &times;
       </button>
+
+      {multi && (
+        <button
+          onClick={prev}
+          style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'white', fontSize: '2.2rem', background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: '50%', width: '2.75rem', height: '2.75rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          aria-label="Previous"
+        >
+          ‹
+        </button>
+      )}
+
       <img
-        src={src}
-        alt={alt}
-        style={{ maxWidth: '100%', maxHeight: '90vh', borderRadius: '1rem', boxShadow: '0 25px 60px rgba(0,0,0,0.5)', objectFit: 'contain' }}
+        src={images[idx]}
+        alt={`${alt} ${idx + 1}`}
+        style={{ maxWidth: '90%', maxHeight: '85vh', borderRadius: '1rem', boxShadow: '0 25px 60px rgba(0,0,0,0.5)', objectFit: 'contain' }}
         onClick={(e) => e.stopPropagation()}
       />
+
+      {multi && (
+        <button
+          onClick={next}
+          style={{ position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'white', fontSize: '2.2rem', background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: '50%', width: '2.75rem', height: '2.75rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          aria-label="Next"
+        >
+          ›
+        </button>
+      )}
+
+      {multi && (
+        <div style={{ position: 'absolute', bottom: '1.25rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '0.4rem' }}>
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={(e) => { e.stopPropagation(); setIdx(i); }}
+              style={{ width: i === idx ? '1.5rem' : '0.5rem', height: '0.5rem', borderRadius: '999px', background: i === idx ? '#B8860B' : 'rgba(255,255,255,0.45)', border: 'none', cursor: 'pointer', transition: 'all 0.25s', padding: 0 }}
+              aria-label={`Image ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </div>,
     document.body
   );
 }
 
-function ProjectCard({ title, description, link, image_url }) {
-  const src = image_url || LOCAL_IMAGES[title];
+function ImageCarousel({ images, alt }) {
+  const [idx, setIdx] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const multi = images.length > 1;
+
+  const prev = (e) => { e.stopPropagation(); setIdx(i => (i - 1 + images.length) % images.length); };
+  const next = (e) => { e.stopPropagation(); setIdx(i => (i + 1) % images.length); };
 
   return (
     <>
-      {lightboxOpen && <Lightbox src={src} alt={title} onClose={() => setLightboxOpen(false)} />}
-      <div className="bg-[#F5D9A0]/60 rounded-2xl p-7 flex flex-col md:flex-row items-start md:items-center gap-6 border border-[#B8860B]/10">
-        <div className="flex-1">
-          <h3 className="font-display text-2xl font-bold text-[#1a1a1a] mb-3">{title}</h3>
-          <p className="text-[#1a1a1a]/70 text-sm leading-relaxed mb-6">{description}</p>
+      {lightboxOpen && (
+        <Lightbox images={images} startIndex={idx} alt={alt} onClose={() => setLightboxOpen(false)} />
+      )}
 
-          <a href={link || '#'}
-            className="inline-block px-6 py-2.5 bg-[#B8860B] text-white rounded-lg font-semibold text-sm hover:bg-[#8B6508] transition-colors duration-200 shadow"
-          >
-            View My Work
-          </a>
+      <div
+        className="w-full md:w-64 lg:w-80 h-44 rounded-xl overflow-hidden bg-[#E8D5A8] flex-shrink-0 shadow relative group"
+        style={{ cursor: 'zoom-in' }}
+        onClick={() => setLightboxOpen(true)}
+      >
+        <img
+          src={images[idx]}
+          alt={`${alt} ${idx + 1}`}
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+          <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-3xl drop-shadow">
+            🔍
+          </span>
         </div>
-        <div
-          className="w-full md:w-64 lg:w-80 h-44 rounded-xl overflow-hidden bg-[#E8D5A8] flex-shrink-0 shadow relative group transition-transform duration-300 hover:scale-110"
-          onClick={() => src && setLightboxOpen(true)}
-          style={src ? { cursor: 'zoom-in' } : {}}
-        >
-          {src ? (
-            <>
-              <img
-                src={src}
-                alt={title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-3xl drop-shadow">
-                  🔍
-                </span>
-              </div>
-            </>
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-[#B8860B]/40 text-xs font-medium">
-              Project Preview
+
+        {multi && (
+          <>
+            <button
+              onClick={prev}
+              className="absolute left-1.5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-7 h-7 flex items-center justify-center text-lg leading-none transition-colors opacity-0 group-hover:opacity-100"
+              aria-label="Previous image"
+            >
+              ‹
+            </button>
+            <button
+              onClick={next}
+              className="absolute right-1.5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-7 h-7 flex items-center justify-center text-lg leading-none transition-colors opacity-0 group-hover:opacity-100"
+              aria-label="Next image"
+            >
+              ›
+            </button>
+
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={(e) => { e.stopPropagation(); setIdx(i); }}
+                  style={{ width: i === idx ? '1rem' : '0.375rem', height: '0.375rem', borderRadius: '999px', background: i === idx ? '#B8860B' : 'rgba(255,255,255,0.7)', border: 'none', cursor: 'pointer', transition: 'all 0.25s', padding: 0 }}
+                  aria-label={`Image ${i + 1}`}
+                />
+              ))}
             </div>
-          )}
-        </div>
+          </>
+        )}
       </div>
     </>
+  );
+}
+
+function ProjectCard({ title, description, link, image_url, image_urls }) {
+  const localImgs = LOCAL_IMAGES[title] ?? [];
+  const apiImgs = image_urls ?? (image_url ? [image_url] : []);
+  const images = apiImgs.length ? apiImgs : localImgs;
+
+  return (
+    <div className="bg-[#F5D9A0]/60 rounded-2xl p-7 flex flex-col md:flex-row items-start md:items-center gap-6 border border-[#B8860B]/10">
+      <div className="flex-1">
+        <h3 className="font-display text-2xl font-bold text-[#1a1a1a] mb-3">{title}</h3>
+        <p className="text-[#1a1a1a]/70 text-sm leading-relaxed mb-6">{description}</p>
+        <a
+          href={link || '#'}
+          className="inline-block px-6 py-2.5 bg-[#B8860B] text-white rounded-lg font-semibold text-sm hover:bg-[#8B6508] transition-colors duration-200 shadow"
+        >
+          View My Work
+        </a>
+      </div>
+
+      {images.length > 0 ? (
+        <ImageCarousel images={images} alt={title} />
+      ) : (
+        <div className="w-full md:w-64 lg:w-80 h-44 rounded-xl bg-[#E8D5A8] flex-shrink-0 flex items-center justify-center text-[#B8860B]/40 text-xs font-medium">
+          Project Preview
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -117,14 +216,12 @@ export default function Projects() {
 
         if (!res.ok) throw new Error(data.error || 'Failed to load projects.');
         setProjects(data.data);
-      } 
-       catch (err) {
-  if (err.name !== 'AbortError') {
-    console.error(err);         
-    setError(err.message);     
-  }
-}
- finally {
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          console.error(err);
+          setError(err.message);
+        }
+      } finally {
         setLoading(false);
       }
     };
