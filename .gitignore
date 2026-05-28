@@ -33,3 +33,8 @@ dist-ssr
  .env.production.local   
  .env.*.local
  .env.example
+
+*/.env
+**/.env
+backend/.env
+frontend/.env
