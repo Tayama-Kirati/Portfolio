@@ -1,8 +1,7 @@
-import dotenv from 'dotenv';
-dotenv.config();
-import mongoose from "mongoose";
-import Project from "../models/Projects.js";
-import Education from "../models/Education.js";
+require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
+const mongoose  = require('mongoose');
+const Project   = require('../models/Projects');
+const Education = require('../models/Education');
 
 const projects = [
   {
@@ -22,7 +21,7 @@ const projects = [
   },
   {
     title:       'MySpace: Ghibli-themed personal productivity and lifestyle website',
-    description: 'My Space is a Ghibli-themed personal productivity and lifestyle websitebuilt with React, featuring five integrated modules — daily journal, focus timer (Pomodoro), book shelf, memory gallery, and movie log. Designed as a private all-in-one digital space to replace scattered productivity tools with a cosy, nature-inspired interface.',
+    description: 'My Space is a Ghibli-themed personal productivity and lifestyle website built with React, featuring five integrated modules — daily journal, focus timer (Pomodoro), book shelf, memory gallery, and movie log. Designed as a private all-in-one digital space to replace scattered productivity tools with a cosy, nature-inspired interface.',
     link:        'https://github.com/Tayama-Kirati/My-Space',
   },
   {
@@ -30,7 +29,7 @@ const projects = [
     description: 'I designed a Rock Paper Scissors Game with a clean, intuitive interface focused on seamless user experience. The design covers gameplay, scoring, and animations — all crafted in Figma.',
     link:        'https://github.com/Tayama-Kirati/RockPaperScissors',
   },
-    {
+  {
     title:       'Khim : Home Management System',
     description: 'I designed a Home Management System with a clean, intuitive interface focused on seamless user experience. The design covers task management, scheduling, and notifications — all crafted in Figma.',
     link:        'https://github.com/Tayama-Kirati/Home-Management-System',
@@ -62,4 +61,5 @@ const seed = async () => {
     process.exit(1);
   }
 };
+
 seed();

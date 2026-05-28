@@ -6,7 +6,7 @@ import metmomoImg         from '../assets/metmomo.png';
 import peanutImg          from '../assets/peanut.png';
 import portfolioImg       from '../assets/portfolio.png';
 import myspaceImg         from '../assets/myspace.png';
-import myspace2Img        from '../assets/Myspace2.png';
+ 
 import rockscissorpaperImg from '../assets/rockscissorpaper.png';
 
 // Map project titles to arrays of images. Add more to any array for a carousel.
@@ -15,7 +15,7 @@ const LOCAL_IMAGES = {
   'MetMomo : Food Ordering System': [metmomoImg],
   'PeaNut : E-Commerce Platform':   [peanutImg],
   'Portfolio Website':              [portfolioImg],
-  'MySpace: Ghibli-themed personal productivity and lifestyle website': [myspaceImg, myspace2Img],
+  'MySpace: Ghibli-themed personal productivity and lifestyle website': [myspaceImg],
   'Rock Paper Scissors Game':       [rockscissorpaperImg],
 };
 
