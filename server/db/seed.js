@@ -1,7 +1,9 @@
 require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
-const mongoose  = require('mongoose');
-const Project   = require('../models/Projects');
-const Education = require('../models/Education');
+const mongoose    = require('mongoose');
+const Project     = require('../models/Projects');
+const Education   = require('../models/Education');
+const Experience  = require('../models/Experience');
+const Certificate = require('../models/Certificate');
 
 const projects = [
   {
@@ -38,9 +40,17 @@ const projects = [
 
 const education = [
   { school: 'St. Xaviers College, Maitighar',    degree: '+2 Science',                       period: 'June 2019 – December 2021', sortOrder: 1 },
-  { school: 'IOE Purwanchal Campus, Dharan',     degree: 'Bachelors In Computer Engineering', period: 'April 2022 – April 2024',   sortOrder: 2 },
+  { school: 'IOE Purwanchal Campus, Dharan',     degree: 'Bachelors In Computer Engineering', period: 'April 2022 – April 2024',   sortOrder: 2, note: 'I was a regular student at Purwanchal Campus before shifting back to Thapathali Campus.' },
   { school: 'IOE Thapathali Campus, Thapathali', degree: 'Bachelors In Computer Engineering', period: 'April 2024 – Present',      sortOrder: 3 },
 ];
+
+const experience = [
+  { company: 'E-Digital Nepal', role: 'UI/UX Designer', period: 'June 2025 – Present', sortOrder: 1 },
+];
+
+// TODO: fill in real entries, e.g.
+// { title: 'AWS Certified Cloud Practitioner', issuer: 'Amazon Web Services', date: 'March 2025', link: 'https://...', sortOrder: 1 },
+const certificates = [];
 
 const seed = async () => {
   try {
@@ -49,10 +59,14 @@ const seed = async () => {
 
     await Project.deleteMany({});
     await Education.deleteMany({});
+    await Experience.deleteMany({});
+    await Certificate.deleteMany({});
     console.log('Cleared existing data');
 
     await Project.insertMany(projects);
     await Education.insertMany(education);
+    if (experience.length)   await Experience.insertMany(experience);
+    if (certificates.length) await Certificate.insertMany(certificates);
     console.log('Seed data inserted successfully');
 
     process.exit(0);

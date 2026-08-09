@@ -1,26 +1,22 @@
 const mongoose = require('mongoose');
 
-const educationSchema = new mongoose.Schema(
+const experienceSchema = new mongoose.Schema(
   {
-    school: {
+    company: {
       type:     String,
-      required: [true, 'School is required'],
+      required: [true, 'Company is required'],
       trim:     true,
     },
-    degree: {
+    role: {
       type:     String,
-      required: [true, 'Degree is required'],
+      required: [true, 'Role is required'],
       trim:     true,
     },
     period: {
       type:     String,
       required: [true, 'Period is required'],
     },
-    gpa: {
-      type:    String,
-      default: null,
-    },
-    note: {
+    description: {
       type:    String,
       default: null,
     },
@@ -34,4 +30,4 @@ const educationSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model('Education', educationSchema);
+module.exports = mongoose.model('Experience', experienceSchema);
