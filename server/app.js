@@ -6,9 +6,11 @@ const fs      = require('fs');
 const path    = require('path');
 
  
-const contactRoutes   = require('./routes/contact');
-const projectRoutes   = require('./routes/projects');
-const educationRoutes = require('./routes/education');
+const contactRoutes      = require('./routes/contact');
+const projectRoutes      = require('./routes/projects');
+const educationRoutes    = require('./routes/education');
+const experienceRoutes   = require('./routes/experience');
+const certificateRoutes  = require('./routes/certificates');
 
 const app  = express();
 const PORT = process.env.PORT || 8000;
@@ -41,18 +43,22 @@ app.get('/downloads', (req, res) => {
  
 
 
-app.use('/api/contact',   contactRoutes);
-app.use('/api/projects',  projectRoutes);
-app.use('/api/education', educationRoutes);
+app.use('/api/contact',      contactRoutes);
+app.use('/api/projects',     projectRoutes);
+app.use('/api/education',    educationRoutes);
+app.use('/api/experience',   experienceRoutes);
+app.use('/api/certificates', certificateRoutes);
 
- 
+
 app.get('/', (req, res) => {
   res.json({
     status: 'Server is running',
     endpoints: {
-      contact:   'POST /api/contact',
-      projects:  'GET  /api/projects',
-      education: 'GET  /api/education',
+      contact:      'POST /api/contact',
+      projects:     'GET  /api/projects',
+      education:    'GET  /api/education',
+      experience:   'GET  /api/experience',
+      certificates: 'GET  /api/certificates',
     },
   });
 });

@@ -7,6 +7,7 @@ import peanutImg          from '../assets/peanut.png';
 import portfolioImg       from '../assets/portfolio.png';
 import myspaceImg         from '../assets/myspace.png';
  
+
 import rockscissorpaperImg from '../assets/rockscissorpaper.png';
 
 // Map project titles to arrays of images. Add more to any array for a carousel.
