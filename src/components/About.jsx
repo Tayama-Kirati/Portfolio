@@ -11,7 +11,7 @@ export default function About() {
         <h2 className="font-display text-4xl md:text-5xl font-bold text-[var(--text-on-alt)] mb-8">About Me</h2>
         <p
           ref={ref}
-          className={`text-[var(--text-on-alt)]/90 text-lg md:text-xl leading-relaxed font-light min-h-[6rem]${done ? '' : ' typewriter-cursor'}`}
+          className={`text-[var(--text-on-alt)] text-lg md:text-xl leading-relaxed font-light min-h-[6rem]${done ? '' : ' typewriter-cursor'}`}
         >
           {displayed || ' '}
         </p>
@@ -21,7 +21,7 @@ export default function About() {
             e.preventDefault();
             document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
           }}
-          className="inline-block mt-10 px-8 py-3 bg-[var(--gold)] text-white rounded-full font-semibold text-sm hover:bg-[var(--gold-dark)] transition-colors duration-200 shadow"
+          className="inline-block mt-10 px-8 py-3 bg-[var(--card-on-alt)] text-[var(--gold)] rounded-full font-semibold text-sm hover:bg-[var(--bg)] transition-colors duration-200 shadow"
         >
           Contact Me
         </a>

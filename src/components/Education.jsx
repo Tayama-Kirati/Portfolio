@@ -65,7 +65,7 @@ export default function Education() {
         {error   && <p className="text-[var(--text-on-alt)]/80 text-sm">{error}</p>}
 
         <div ref={containerRef} className="relative">
-          <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-[var(--text-on-alt)]/40" />
+          <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-[var(--card-on-alt)]" />
 
           <div className="flex flex-col gap-10">
             {education.map((edu, index) => (
@@ -94,7 +94,7 @@ export default function Education() {
                               e.stopPropagation();
                               setOpenNoteId(openNoteId === edu._id ? null : edu._id);
                             }}
-                            className="w-5 h-5 shrink-0 rounded-full bg-[var(--gold)] text-white text-xs font-bold flex items-center justify-center hover:bg-[var(--gold-dark)] transition-colors"
+                            className="w-5 h-5 shrink-0 rounded-full bg-[var(--gold)] text-white text-xs font-bold flex items-center justify-center hover:bg-[#9a6f09] transition-colors"
                           >
                             i
                           </button>
