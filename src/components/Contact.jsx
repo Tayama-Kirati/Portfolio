@@ -46,7 +46,7 @@ export default function Contact() {
         <h2 className="font-display text-4xl md:text-5xl font-bold text-[var(--gold)] text-center mb-3">
           Get In Touch
         </h2>
-        <p className="text-center text-[var(--text)]/60 mb-12 text-sm">
+        <p className="text-center text-[color-mix(in_srgb,var(--text)_60%,transparent)] mb-12 text-sm">
           Have a project in mind or want to collaborate? Feel free to reach out!
         </p>
 
@@ -58,7 +58,7 @@ export default function Contact() {
                 <Phone size={24} className="text-white" />
               </span>
               <span className="font-semibold text-sm text-[var(--text)]">Phone</span>
-              <span className="text-xs text-[var(--text)]/60">+977 9808501847</span>
+              <span className="text-xs text-[color-mix(in_srgb,var(--text)_60%,transparent)]">+977 9808501847</span>
             </a>
           </div>
           <div>
@@ -76,7 +76,7 @@ export default function Contact() {
                 <FileText size={24} className="text-white" />
               </span>
               <span className="font-semibold text-sm text-[var(--text)]">CV</span>
-              <span className="text-xs text-[var(--text)]/60 hover:text-[var(--gold)] transition-colors">
+              <span className="text-xs text-[color-mix(in_srgb,var(--text)_60%,transparent)] hover:text-[var(--gold)] transition-colors">
                 Download CV
               </span>
             </a>
@@ -86,17 +86,17 @@ export default function Contact() {
 
         <div className="flex justify-center gap-8 mb-12">
           <a href="https://github.com/" target="_blank" rel="noreferrer"
-            className="flex items-center gap-2 text-sm font-medium text-[var(--text)]/70 hover:text-[var(--gold)] transition-colors">
+            className="flex items-center gap-2 text-sm font-medium text-[color-mix(in_srgb,var(--text)_70%,transparent)] hover:text-[var(--gold)] transition-colors">
             <Github size={18} /> Github
           </a>
           <a href="https://linkedin.com/" target="_blank" rel="noreferrer"
-            className="flex items-center gap-2 text-sm font-medium text-[var(--text)]/70 hover:text-[var(--gold)] transition-colors">
+            className="flex items-center gap-2 text-sm font-medium text-[color-mix(in_srgb,var(--text)_70%,transparent)] hover:text-[var(--gold)] transition-colors">
             <Linkedin size={18} /> LinkedIn
           </a>
         </div>
 
 
-        <div className="bg-[var(--card)]/70 rounded-2xl p-8 border border-[var(--gold)]/10">
+        <div className="bg-[color-mix(in_srgb,var(--card)_70%,transparent)] rounded-2xl p-8 border border-[color-mix(in_srgb,var(--gold)_10%,transparent)]">
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
 
             <div>
@@ -104,7 +104,7 @@ export default function Contact() {
               <input
                 type="text" name="name" value={form.name} onChange={handleChange}
                 placeholder="Your Name" required
-                className="w-full bg-[var(--input-bg)] text-[var(--text)] rounded-xl px-4 py-3 text-sm placeholder:text-[var(--text)]/30 focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/40 transition"
+                className="w-full bg-[var(--input-bg)] text-[var(--text)] rounded-xl px-4 py-3 text-sm placeholder:text-[color-mix(in_srgb,var(--text)_30%,transparent)] focus:outline-none focus:ring-2 focus:ring-[color-mix(in_srgb,var(--gold)_40%,transparent)] transition"
               />
             </div>
 
@@ -113,7 +113,7 @@ export default function Contact() {
               <input
                 type="email" name="email" value={form.email} onChange={handleChange}
                 placeholder="example@gmail.com" required
-                className="w-full bg-[var(--input-bg)] text-[var(--text)] rounded-xl px-4 py-3 text-sm placeholder:text-[var(--text)]/30 focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/40 transition"
+                className="w-full bg-[var(--input-bg)] text-[var(--text)] rounded-xl px-4 py-3 text-sm placeholder:text-[color-mix(in_srgb,var(--text)_30%,transparent)] focus:outline-none focus:ring-2 focus:ring-[color-mix(in_srgb,var(--gold)_40%,transparent)] transition"
               />
             </div>
 
@@ -122,7 +122,7 @@ export default function Contact() {
               <textarea
                 name="message" value={form.message} onChange={handleChange}
                 placeholder="Your message here....." rows={5} required
-                className="w-full bg-[var(--input-bg)] text-[var(--text)] rounded-xl px-4 py-3 text-sm placeholder:text-[var(--text)]/30 focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/40 transition resize-none"
+                className="w-full bg-[var(--input-bg)] text-[var(--text)] rounded-xl px-4 py-3 text-sm placeholder:text-[color-mix(in_srgb,var(--text)_30%,transparent)] focus:outline-none focus:ring-2 focus:ring-[color-mix(in_srgb,var(--gold)_40%,transparent)] transition resize-none"
               />
             </div>
 

@@ -213,12 +213,12 @@ function ProjectCard({ title, description, link, image_url, image_urls }) {
   const images = apiImgs.length ? apiImgs : localImgs;
 
   return (
-    <div className="bg-[var(--card-alt)] rounded-2xl p-7 flex flex-col md:flex-row items-start md:items-center gap-6 border border-[var(--gold)]/10">
+    <div className="bg-[var(--card-alt)] rounded-2xl p-7 flex flex-col md:flex-row items-start md:items-center gap-6 border border-[color-mix(in_srgb,var(--gold)_10%,transparent)]">
       <div className="flex-1">
         <h3 className="font-display text-2xl font-bold text-[var(--text)] mb-3">{title}</h3>
         <ExpandableText
           text={description}
-          className="text-[var(--text)]/70 text-sm leading-relaxed"
+          className="text-[color-mix(in_srgb,var(--text)_70%,transparent)] text-sm leading-relaxed"
           clampClass="line-clamp-4"
           wrapperClassName="mb-6"
         />
@@ -233,7 +233,7 @@ function ProjectCard({ title, description, link, image_url, image_urls }) {
       {images.length > 0 ? (
         <ImageCarousel images={images} alt={title} />
       ) : (
-        <div className="w-full md:w-64 lg:w-80 h-44 rounded-xl bg-[var(--card)] flex-shrink-0 flex items-center justify-center text-[var(--gold)]/40 text-xs font-medium">
+        <div className="w-full md:w-64 lg:w-80 h-44 rounded-xl bg-[var(--card)] flex-shrink-0 flex items-center justify-center text-[color-mix(in_srgb,var(--gold)_40%,transparent)] text-xs font-medium">
           Project Preview
         </div>
       )}
@@ -247,11 +247,11 @@ function ProjectCardGrid({ title, description, link, image_url, image_urls }) {
   const images = apiImgs.length ? apiImgs : localImgs;
 
   return (
-    <div className="bg-[var(--card-alt)] rounded-2xl p-5 flex flex-col gap-4 border border-[var(--gold)]/10">
+    <div className="bg-[var(--card-alt)] rounded-2xl p-5 flex flex-col gap-4 border border-[color-mix(in_srgb,var(--gold)_10%,transparent)]">
       {images.length > 0 ? (
         <ImageCarousel images={images} alt={title} variant="grid" />
       ) : (
-        <div className="w-full h-48 rounded-xl bg-[var(--card)] flex items-center justify-center text-[var(--gold)]/40 text-xs font-medium">
+        <div className="w-full h-48 rounded-xl bg-[var(--card)] flex items-center justify-center text-[color-mix(in_srgb,var(--gold)_40%,transparent)] text-xs font-medium">
           Project Preview
         </div>
       )}
@@ -260,7 +260,7 @@ function ProjectCardGrid({ title, description, link, image_url, image_urls }) {
         <h3 className="font-display text-lg font-bold text-[var(--text)] mb-2">{title}</h3>
         <ExpandableText
           text={description}
-          className="text-[var(--text)]/70 text-sm leading-relaxed"
+          className="text-[color-mix(in_srgb,var(--text)_70%,transparent)] text-sm leading-relaxed"
           clampClass="line-clamp-3"
           wrapperClassName="mb-4"
         />
@@ -326,7 +326,7 @@ export default function Projects() {
           My Projects
         </h2>
 
-        <div className="flex gap-6 border-b border-[var(--gold)]/15 mb-8">
+        <div className="flex gap-6 border-b border-[color-mix(in_srgb,var(--gold)_15%,transparent)] mb-8">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
@@ -334,7 +334,7 @@ export default function Projects() {
               onClick={() => setCategory(cat)}
               aria-pressed={category === cat}
               className={`relative pb-3 text-sm font-semibold transition-colors ${
-                category === cat ? 'text-[var(--gold)]' : 'text-[var(--text)]/50 hover:text-[var(--text)]/80'
+                category === cat ? 'text-[var(--gold)]' : 'text-[color-mix(in_srgb,var(--text)_50%,transparent)] hover:text-[color-mix(in_srgb,var(--text)_80%,transparent)]'
               }`}
             >
               {cat}
@@ -351,16 +351,16 @@ export default function Projects() {
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search projects…"
-            className="w-full max-w-sm bg-[var(--card)]/60 rounded-xl px-4 py-3 text-sm border text-[var(--text)] border-[var(--gold)]/20 focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/40 transition"
+            className="w-full max-w-sm bg-[color-mix(in_srgb,var(--card)_60%,transparent)] rounded-xl px-4 py-3 text-sm border text-[var(--text)] border-[color-mix(in_srgb,var(--gold)_20%,transparent)] focus:outline-none focus:ring-2 focus:ring-[color-mix(in_srgb,var(--gold)_40%,transparent)] transition"
           />
 
-          <div className="flex items-center gap-1 bg-[var(--card)]/60 rounded-xl p-1 border border-[var(--gold)]/20">
+          <div className="flex items-center gap-1 bg-[color-mix(in_srgb,var(--card)_60%,transparent)] rounded-xl p-1 border border-[color-mix(in_srgb,var(--gold)_20%,transparent)]">
             <button
               type="button"
               onClick={() => setLayout('list')}
               aria-label="List layout"
               aria-pressed={layout === 'list'}
-              className={`p-2 rounded-lg transition-colors ${layout === 'list' ? 'bg-[var(--gold)] text-white' : 'text-[var(--text)]/60 hover:text-[var(--gold)]'}`}
+              className={`p-2 rounded-lg transition-colors ${layout === 'list' ? 'bg-[var(--gold)] text-white' : 'text-[color-mix(in_srgb,var(--text)_60%,transparent)] hover:text-[var(--gold)]'}`}
             >
               <List size={18} />
             </button>
@@ -369,14 +369,14 @@ export default function Projects() {
               onClick={() => setLayout('grid')}
               aria-label="Grid layout"
               aria-pressed={layout === 'grid'}
-              className={`p-2 rounded-lg transition-colors ${layout === 'grid' ? 'bg-[var(--gold)] text-white' : 'text-[var(--text)]/60 hover:text-[var(--gold)]'}`}
+              className={`p-2 rounded-lg transition-colors ${layout === 'grid' ? 'bg-[var(--gold)] text-white' : 'text-[color-mix(in_srgb,var(--text)_60%,transparent)] hover:text-[var(--gold)]'}`}
             >
               <LayoutGrid size={18} />
             </button>
           </div>
         </div>
 
-        {loading && <p className="text-[var(--gold)]/60 text-sm">Loading projects…</p>}
+        {loading && <p className="text-[color-mix(in_srgb,var(--gold)_60%,transparent)] text-sm">Loading projects…</p>}
         {error   && <p className="text-red-500 text-sm">{error}</p>}
 
         <div className={layout === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6' : 'flex flex-col gap-7'}>
@@ -386,7 +386,7 @@ export default function Projects() {
               : <ProjectCard key={p._id} {...p} />
           ))}
           {!loading && !error && visibleProjects.length === 0 && (
-            <p className="text-[var(--text)]/50 text-sm">No projects found.</p>
+            <p className="text-[color-mix(in_srgb,var(--text)_50%,transparent)] text-sm">No projects found.</p>
           )}
         </div>
       </div>

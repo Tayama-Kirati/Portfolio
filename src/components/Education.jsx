@@ -61,8 +61,8 @@ export default function Education() {
           Education
         </h2>
 
-        {loading && <p className="text-[var(--text-on-alt)]/60 text-sm">Loading…</p>}
-        {error   && <p className="text-[var(--text-on-alt)]/80 text-sm">{error}</p>}
+        {loading && <p className="text-[color-mix(in_srgb,var(--text-on-alt)_60%,transparent)] text-sm">Loading…</p>}
+        {error   && <p className="text-[color-mix(in_srgb,var(--text-on-alt)_80%,transparent)] text-sm">{error}</p>}
 
         <div ref={containerRef} className="relative">
           <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-[var(--card-on-alt)]" />
