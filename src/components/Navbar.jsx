@@ -44,7 +44,7 @@ export default function Navbar() {
             <li key={link}>
               <button
                 onClick={() => scrollTo(link)}
-                className="text-[16px] font-medium text-[var(--text)]/70 hover:text-[var(--gold)] transition-colors duration-200"
+                className="text-[16px] font-medium text-[color-mix(in_srgb,var(--text)_70%,transparent)] hover:text-[var(--gold)] transition-colors duration-200"
               >
                 {link}
               </button>
@@ -57,7 +57,7 @@ export default function Navbar() {
             onClick={cycleTheme}
             title={`${label} — ${next}`}
             aria-label={`${label}. ${next}`}
-            className="w-9 h-9 flex items-center justify-center rounded-full text-[var(--text)]/70 hover:text-[var(--gold)] border border-[var(--gold)]/20 hover:border-[var(--gold)]/40 transition-colors duration-200"
+            className="w-9 h-9 flex items-center justify-center rounded-full text-[color-mix(in_srgb,var(--text)_70%,transparent)] hover:text-[var(--gold)] border border-[color-mix(in_srgb,var(--gold)_20%,transparent)] hover:border-[color-mix(in_srgb,var(--gold)_40%,transparent)] transition-colors duration-200"
           >
             <ThemeIcon size={16} />
           </button>
@@ -69,12 +69,12 @@ export default function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden bg-[var(--bg)] border-t border-[var(--gold)]/20 px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-[var(--bg)] border-t border-[color-mix(in_srgb,var(--gold)_20%,transparent)] px-6 py-4 flex flex-col gap-4">
           {navLinks.map((link) => (
             <button
               key={link}
               onClick={() => scrollTo(link)}
-              className="text-[16px] font-medium text-left text-[var(--text)]/70 hover:text-[var(--gold)] transition-colors"
+              className="text-[16px] font-medium text-left text-[color-mix(in_srgb,var(--text)_70%,transparent)] hover:text-[var(--gold)] transition-colors"
             >
               {link}
             </button>
