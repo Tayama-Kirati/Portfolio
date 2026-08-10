@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Tayama from '../assets/Tayama.png';
 import { useTypewriter } from '../hooks/useTypewriter';
 
 const ROLES = [
@@ -36,9 +37,17 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="flex items-start bg-[var(--bg)] pt-28 pb-16"
+      className="flex items-start bg-[var(--bg)] pt-2 pb-0"
     >
-      <div className="max-w-6xl mx-auto px-6 w-full flex flex-col items-center">
+      <div className="max-w-6xl mx-auto px-6 w-full flex flex-col md:flex-row items-center gap-8">
+
+        <div className="flex-shrink-0 w-40 md:w-1/2">
+          <img
+            src={Tayama}
+            alt="Tayama Kirati"
+            className="w-full h-auto object-cover"
+          />
+        </div>
 
         <div className="flex flex-col gap-3 text-center">
           <p className={`text-4xl font-bold text-[var(--text)]${helloTyped ? '' : ' typewriter-cursor'}`}>
@@ -57,7 +66,7 @@ export default function Hero() {
             <span className="typewriter-cursor">{role}</span>
           </h2>
 
-          <div className={`flex flex-wrap justify-center gap-4 mt-6 transition-opacity duration-700 ${showButtons ? 'opacity-100' : 'opacity-0'}`}>
+          <div className={`flex flex-wrap justify-center md:justify-start gap-4 mt-6 transition-opacity duration-700 ${showButtons ? 'opacity-100' : 'opacity-0'}`}>
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="px-7 py-3 text-white rounded-full font-semibold text-sm shadow-md"

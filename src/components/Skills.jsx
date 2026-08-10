@@ -94,7 +94,7 @@ export default function Skills() {
             <div
               key={cat.title}
               data-skill-card={catIdx}
-              className="bg-[var(--card)]/60 rounded-2xl p-7 border border-[var(--gold)]/10"
+              className="bg-[var(--card)] rounded-2xl p-7 border-2 border-[var(--gold)] shadow-sm"
               style={{
                 opacity: 0,
                 transform: 'translateY(28px)',

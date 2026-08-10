@@ -29,11 +29,12 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[var(--bg)]/95 backdrop-blur-sm shadow-sm' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[var(--bg)] ${scrolled ? 'shadow-sm' : ''}`}>
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <button
           onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}
-          className="font-display font-bold text-[20px] text-[var(--text)] hover:text-[var(--gold)] transition-colors duration-200"
+          className="font-bold text-[20px] text-[var(--gold-dark)] hover:text-[var(--gold)] transition-colors duration-200"
+          style={{ fontFamily: 'Fredoka' }}
         >
           TAYAMA
         </button>

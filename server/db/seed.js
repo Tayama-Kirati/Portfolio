@@ -10,7 +10,7 @@ const projects = [
     title:       'MetMomo : Food Ordering System',
     description: 'I designed a Food Ordering System with a clean, intuitive interface focused on seamless user experience. The design covers browsing restaurants, ordering food, and real-time tracking — all crafted in Figma.',
     link:        'https://github.com/Tayama-Kirati/MetMoMo',
-    category:    'Design',
+    category:    'Full Stack',
   },
   {
     title:       'Portfolio Website',
@@ -22,7 +22,7 @@ const projects = [
     title:       'PeaNut : E-Commerce Platform',
     description: 'I designed an E-Commerce Platform with a clean, intuitive interface focused on seamless user experience. The design covers browsing products, adding to cart, and checkout — all crafted in Figma.',
     link:        'https://github.com/Tayama-Kirati/E-Commerce',
-    category:    'Design',
+    category:    'Frontend',
   },
   {
     title:       'MySpace: Ghibli-themed personal productivity and lifestyle website',
@@ -40,7 +40,7 @@ const projects = [
     title:       'Khim : Home Management System',
     description: 'I designed a Home Management System with a clean, intuitive interface focused on seamless user experience. The design covers task management, scheduling, and notifications — all crafted in Figma.',
     link:        'https://github.com/Tayama-Kirati/Home-Management-System',
-    category:    'Design',
+    category:    'Frontend',
   },
   {
     title:       'SnapSigns : Text-to-Sign-Language Translator',

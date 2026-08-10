@@ -12,8 +12,9 @@ import myspaceImg         from '../assets/myspace.png';
 import rockscissorpaperImg from '../assets/rockscissorpaper.png';
 import rpsBattleImg        from '../assets/rockpaperscissors-battle.png';
 import rpsHowToPlayImg     from '../assets/rockpaperscissors-howtoplay.png';
-import digitalNepalImg     from '../assets/digitalnepal.png';
-import onlineFoodImg       from '../assets/onlinefooddelivery.png';
+import coverSnapSignsImg   from '../assets/cover-snapsigns.png';
+import coverGenealogyImg   from '../assets/cover-genealogy.png';
+import coverSlamImg        from '../assets/cover-slam.png';
 
 // Map project titles to arrays of images. Add more to any array for a carousel.
 const LOCAL_IMAGES = {
@@ -23,8 +24,9 @@ const LOCAL_IMAGES = {
   'Portfolio Website':              [portfolioImg],
   'MySpace: Ghibli-themed personal productivity and lifestyle website': [myspaceImg],
   'Rock Paper Scissors Game':       [rockscissorpaperImg, rpsBattleImg, rpsHowToPlayImg],
-  'Digital Nepal : School Management System': [digitalNepalImg],
-  'Online Food Delivery : App Landing Page':  [onlineFoodImg],
+  'SnapSigns : Text-to-Sign-Language Translator': [coverSnapSignsImg],
+  'Genealogy Visualizer':                      [coverGenealogyImg],
+  'Geometric SLAM with Depth-Supervised NeRF': [coverSlamImg],
 };
 
 function Lightbox({ images, startIndex, alt, onClose }) {
