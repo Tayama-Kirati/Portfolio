@@ -6,14 +6,14 @@ export default function About() {
   const { ref, displayed, done } = useScrollTypewriter(BIO, 18);
 
   return (
-    <section id="about-me" className="bg-[#B8860B] py-24 px-6">
+    <section id="about-me" className="bg-[var(--bg-alt)] py-24 px-6">
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-8">About Me</h2>
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-[var(--text-on-alt)] mb-8">About Me</h2>
         <p
           ref={ref}
-          className={`text-white/90 text-lg md:text-xl leading-relaxed font-light min-h-[6rem]${done ? '' : ' typewriter-cursor'}`}
+          className={`text-[var(--text-on-alt)]/90 text-lg md:text-xl leading-relaxed font-light min-h-[6rem]${done ? '' : ' typewriter-cursor'}`}
         >
-          {displayed || ' '}
+          {displayed || ' '}
         </p>
         <a
           href="#contact"
@@ -21,7 +21,7 @@ export default function About() {
             e.preventDefault();
             document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
           }}
-          className="inline-block mt-10 px-8 py-3 bg-white text-[#B8860B] rounded-full font-semibold text-sm hover:bg-[#F5EDD6] transition-colors duration-200 shadow"
+          className="inline-block mt-10 px-8 py-3 bg-[var(--gold)] text-white rounded-full font-semibold text-sm hover:bg-[var(--gold-dark)] transition-colors duration-200 shadow"
         >
           Contact Me
         </a>

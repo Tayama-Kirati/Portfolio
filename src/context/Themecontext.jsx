@@ -2,28 +2,30 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 const ThemeContext = createContext();
 
+const THEMES = ['current', 'dark', 'light'];
+
 export function ThemeProvider({ children }) {
-  const [dark, setDark] = useState(() => {
+  const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') === 'dark' ||
-        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      const saved = localStorage.getItem('theme');
+      if (THEMES.includes(saved)) return saved;
     }
-    return false;
+    return 'current';
   });
 
   useEffect(() => {
     const root = document.documentElement;
-    if (dark) {
-      root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [dark]);
+    root.classList.remove('dark', 'light');
+    if (theme !== 'current') root.classList.add(theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const cycleTheme = () => {
+    setTheme(t => THEMES[(THEMES.indexOf(t) + 1) % THEMES.length]);
+  };
 
   return (
-    <ThemeContext.Provider value={{ dark, toggleDark: () => setDark(d => !d) }}>
+    <ThemeContext.Provider value={{ theme, setTheme, cycleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
