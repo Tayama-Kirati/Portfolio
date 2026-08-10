@@ -55,17 +55,17 @@ export default function Education() {
   }, [openNoteId]);
 
   return (
-    <section id="education" className="bg-[#B8860B] py-24 px-6">
+    <section id="education" className="bg-[var(--bg-alt)] py-24 px-6">
       <div className="max-w-4xl mx-auto">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-12">
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-[var(--text-on-alt)] mb-12">
           Education
         </h2>
 
-        {loading && <p className="text-white/60 text-sm">Loading…</p>}
-        {error   && <p className="text-white/80 text-sm">{error}</p>}
+        {loading && <p className="text-[var(--text-on-alt)]/60 text-sm">Loading…</p>}
+        {error   && <p className="text-[var(--text-on-alt)]/80 text-sm">{error}</p>}
 
         <div ref={containerRef} className="relative">
-          <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-white/40" />
+          <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-[var(--text-on-alt)]/40" />
 
           <div className="flex flex-col gap-10">
             {education.map((edu, index) => (
@@ -79,12 +79,12 @@ export default function Education() {
                   transition: 'opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1)',
                 }}
               >
-                <span className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-[#E8E0D0] border-[3px] border-white shadow-sm" />
+                <span className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-[var(--card-on-alt)] border-[3px] border-[var(--bg-alt)] shadow-sm" />
 
-                <div className="bg-[#E8E0D0] rounded-2xl px-8 py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                <div className="bg-[var(--card-on-alt)] rounded-2xl px-8 py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                   <div>
                     <div className="flex items-center gap-2 relative">
-                      <p className="font-semibold text-lg text-[#1a1a1a]">{edu.school}</p>
+                      <p className="font-semibold text-lg text-[var(--text)]">{edu.school}</p>
                       {edu.note && (
                         <>
                           <button
@@ -94,7 +94,7 @@ export default function Education() {
                               e.stopPropagation();
                               setOpenNoteId(openNoteId === edu._id ? null : edu._id);
                             }}
-                            className="w-5 h-5 shrink-0 rounded-full bg-[#B8860B] text-white text-xs font-bold flex items-center justify-center hover:bg-[#9a6f09] transition-colors"
+                            className="w-5 h-5 shrink-0 rounded-full bg-[var(--gold)] text-white text-xs font-bold flex items-center justify-center hover:bg-[var(--gold-dark)] transition-colors"
                           >
                             i
                           </button>
@@ -109,12 +109,12 @@ export default function Education() {
                         </>
                       )}
                     </div>
-                    <p className="text-[#B8860B] font-medium text-sm mt-0.5">{edu.degree}</p>
+                    <p className="text-[var(--gold)] font-medium text-sm mt-0.5">{edu.degree}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-[#1a1a1a] font-medium text-sm">{edu.period}</p>
+                    <p className="text-[var(--text)] font-medium text-sm">{edu.period}</p>
                     {edu.gpa && (
-                      <p className="text-[#B8860B] font-semibold text-sm mt-0.5">{edu.gpa}</p>
+                      <p className="text-[var(--gold)] font-semibold text-sm mt-0.5">{edu.gpa}</p>
                     )}
                   </div>
                 </div>

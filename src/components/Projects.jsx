@@ -1,14 +1,19 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
+import { List, LayoutGrid } from 'lucide-react';
 import { API_URL } from '../App';
 import khimImg            from '../assets/khim.png';
 import metmomoImg         from '../assets/metmomo.png';
 import peanutImg          from '../assets/peanut.png';
 import portfolioImg       from '../assets/portfolio.png';
 import myspaceImg         from '../assets/myspace.png';
- 
+
 
 import rockscissorpaperImg from '../assets/rockscissorpaper.png';
+import rpsBattleImg        from '../assets/rockpaperscissors-battle.png';
+import rpsHowToPlayImg     from '../assets/rockpaperscissors-howtoplay.png';
+import digitalNepalImg     from '../assets/digitalnepal.png';
+import onlineFoodImg       from '../assets/onlinefooddelivery.png';
 
 // Map project titles to arrays of images. Add more to any array for a carousel.
 const LOCAL_IMAGES = {
@@ -17,7 +22,9 @@ const LOCAL_IMAGES = {
   'PeaNut : E-Commerce Platform':   [peanutImg],
   'Portfolio Website':              [portfolioImg],
   'MySpace: Ghibli-themed personal productivity and lifestyle website': [myspaceImg],
-  'Rock Paper Scissors Game':       [rockscissorpaperImg],
+  'Rock Paper Scissors Game':       [rockscissorpaperImg, rpsBattleImg, rpsHowToPlayImg],
+  'Digital Nepal : School Management System': [digitalNepalImg],
+  'Online Food Delivery : App Landing Page':  [onlineFoodImg],
 };
 
 function Lightbox({ images, startIndex, alt, onClose }) {
@@ -101,7 +108,7 @@ function Lightbox({ images, startIndex, alt, onClose }) {
   );
 }
 
-function ImageCarousel({ images, alt }) {
+function ImageCarousel({ images, alt, variant = 'row' }) {
   const [idx, setIdx] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const multi = images.length > 1;
@@ -116,7 +123,11 @@ function ImageCarousel({ images, alt }) {
       )}
 
       <div
-        className="w-full md:w-64 lg:w-80 h-44 rounded-xl overflow-hidden bg-[#E8D5A8] flex-shrink-0 shadow relative group"
+        className={
+          variant === 'grid'
+            ? "w-full h-48 rounded-xl overflow-hidden bg-[var(--card)] shadow relative group"
+            : "w-full md:w-64 lg:w-80 h-44 rounded-xl overflow-hidden bg-[var(--card)] flex-shrink-0 shadow relative group"
+        }
         style={{ cursor: 'zoom-in' }}
         onClick={() => setLightboxOpen(true)}
       >
@@ -166,19 +177,52 @@ function ImageCarousel({ images, alt }) {
   );
 }
 
+function ExpandableText({ text, className = '', clampClass = 'line-clamp-3', wrapperClassName = '' }) {
+  const [expanded, setExpanded] = useState(false);
+  const [overflowing, setOverflowing] = useState(false);
+  const ref = useRef(null);
+
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (el) setOverflowing(el.scrollHeight - el.clientHeight > 1);
+  }, [text]);
+
+  return (
+    <div className={wrapperClassName}>
+      <p ref={ref} className={`${className} ${expanded ? '' : clampClass}`}>
+        {text}
+      </p>
+      {overflowing && (
+        <button
+          type="button"
+          onClick={() => setExpanded(v => !v)}
+          className="text-[var(--gold)] text-xs font-semibold hover:text-[var(--gold-dark)] transition-colors mt-1"
+        >
+          {expanded ? 'See less' : 'See more'}
+        </button>
+      )}
+    </div>
+  );
+}
+
 function ProjectCard({ title, description, link, image_url, image_urls }) {
   const localImgs = LOCAL_IMAGES[title] ?? [];
   const apiImgs = image_urls ?? (image_url ? [image_url] : []);
   const images = apiImgs.length ? apiImgs : localImgs;
 
   return (
-    <div className="bg-[#F5D9A0]/60 rounded-2xl p-7 flex flex-col md:flex-row items-start md:items-center gap-6 border border-[#B8860B]/10">
+    <div className="bg-[var(--card-alt)] rounded-2xl p-7 flex flex-col md:flex-row items-start md:items-center gap-6 border border-[var(--gold)]/10">
       <div className="flex-1">
-        <h3 className="font-display text-2xl font-bold text-[#1a1a1a] mb-3">{title}</h3>
-        <p className="text-[#1a1a1a]/70 text-sm leading-relaxed mb-6">{description}</p>
+        <h3 className="font-display text-2xl font-bold text-[var(--text)] mb-3">{title}</h3>
+        <ExpandableText
+          text={description}
+          className="text-[var(--text)]/70 text-sm leading-relaxed"
+          clampClass="line-clamp-4"
+          wrapperClassName="mb-6"
+        />
         <a
           href={link || '#'}
-          className="inline-block px-6 py-2.5 bg-[#B8860B] text-white rounded-lg font-semibold text-sm hover:bg-[#8B6508] transition-colors duration-200 shadow"
+          className="inline-block px-6 py-2.5 bg-[var(--gold)] text-white rounded-lg font-semibold text-sm hover:bg-[var(--gold-dark)] transition-colors duration-200 shadow"
         >
           View My Work
         </a>
@@ -187,7 +231,7 @@ function ProjectCard({ title, description, link, image_url, image_urls }) {
       {images.length > 0 ? (
         <ImageCarousel images={images} alt={title} />
       ) : (
-        <div className="w-full md:w-64 lg:w-80 h-44 rounded-xl bg-[#E8D5A8] flex-shrink-0 flex items-center justify-center text-[#B8860B]/40 text-xs font-medium">
+        <div className="w-full md:w-64 lg:w-80 h-44 rounded-xl bg-[var(--card)] flex-shrink-0 flex items-center justify-center text-[var(--gold)]/40 text-xs font-medium">
           Project Preview
         </div>
       )}
@@ -195,11 +239,49 @@ function ProjectCard({ title, description, link, image_url, image_urls }) {
   );
 }
 
+function ProjectCardGrid({ title, description, link, image_url, image_urls }) {
+  const localImgs = LOCAL_IMAGES[title] ?? [];
+  const apiImgs = image_urls ?? (image_url ? [image_url] : []);
+  const images = apiImgs.length ? apiImgs : localImgs;
+
+  return (
+    <div className="bg-[var(--card-alt)] rounded-2xl p-5 flex flex-col gap-4 border border-[var(--gold)]/10">
+      {images.length > 0 ? (
+        <ImageCarousel images={images} alt={title} variant="grid" />
+      ) : (
+        <div className="w-full h-48 rounded-xl bg-[var(--card)] flex items-center justify-center text-[var(--gold)]/40 text-xs font-medium">
+          Project Preview
+        </div>
+      )}
+
+      <div>
+        <h3 className="font-display text-lg font-bold text-[var(--text)] mb-2">{title}</h3>
+        <ExpandableText
+          text={description}
+          className="text-[var(--text)]/70 text-sm leading-relaxed"
+          clampClass="line-clamp-3"
+          wrapperClassName="mb-4"
+        />
+        <a
+          href={link || '#'}
+          className="inline-block px-5 py-2 bg-[var(--gold)] text-white rounded-lg font-semibold text-sm hover:bg-[var(--gold-dark)] transition-colors duration-200 shadow"
+        >
+          View My Work
+        </a>
+      </div>
+    </div>
+  );
+}
+
+const CATEGORIES = ['All', 'Design', 'Full Stack', 'Frontend'];
+
 export default function Projects() {
   const [projects, setProjects] = useState([]);
   const [loading,  setLoading]  = useState(true);
   const [error,    setError]    = useState('');
   const [search,   setSearch]   = useState('');
+  const [layout,   setLayout]   = useState('list');
+  const [category, setCategory] = useState('All');
 
   useEffect(() => {
     const controller = new AbortController();
@@ -231,30 +313,78 @@ export default function Projects() {
     return () => { clearTimeout(timer); controller.abort(); };
   }, [search]);
 
+  const visibleProjects = category === 'All'
+    ? projects
+    : projects.filter(p => (p.category ?? 'Design') === category);
+
   return (
-    <section id="projects" className="bg-[#F5EDD6] py-24 px-6">
+    <section id="projects" className="bg-[var(--bg)] py-24 px-6">
       <div className="max-w-5xl mx-auto">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-[#1a1a1a] mb-6">
+        <h2 className="font-display text-4xl md:text-5xl font-bold text-[var(--text)] mb-6">
           My Projects
         </h2>
 
-        <input
-          type="text"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          placeholder="Search projects…"
-          className="mb-10 w-full max-w-sm bg-[#F5D9A0]/60 rounded-xl px-4 py-3 text-sm border text-black border-[#B8860B]/20 focus:outline-none focus:ring-2 focus:ring-[#B8860B]/40 transition"
-        />
+        <div className="flex gap-6 border-b border-[var(--gold)]/15 mb-8">
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => setCategory(cat)}
+              aria-pressed={category === cat}
+              className={`relative pb-3 text-sm font-semibold transition-colors ${
+                category === cat ? 'text-[var(--gold)]' : 'text-[var(--text)]/50 hover:text-[var(--text)]/80'
+              }`}
+            >
+              {cat}
+              {category === cat && (
+                <span className="absolute left-0 right-0 -bottom-px h-0.5 bg-[var(--gold)] rounded-full" />
+              )}
+            </button>
+          ))}
+        </div>
 
-        {loading && <p className="text-[#B8860B]/60 text-sm">Loading projects…</p>}
+        <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
+          <input
+            type="text"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Search projects…"
+            className="w-full max-w-sm bg-[var(--card)]/60 rounded-xl px-4 py-3 text-sm border text-[var(--text)] border-[var(--gold)]/20 focus:outline-none focus:ring-2 focus:ring-[var(--gold)]/40 transition"
+          />
+
+          <div className="flex items-center gap-1 bg-[var(--card)]/60 rounded-xl p-1 border border-[var(--gold)]/20">
+            <button
+              type="button"
+              onClick={() => setLayout('list')}
+              aria-label="List layout"
+              aria-pressed={layout === 'list'}
+              className={`p-2 rounded-lg transition-colors ${layout === 'list' ? 'bg-[var(--gold)] text-white' : 'text-[var(--text)]/60 hover:text-[var(--gold)]'}`}
+            >
+              <List size={18} />
+            </button>
+            <button
+              type="button"
+              onClick={() => setLayout('grid')}
+              aria-label="Grid layout"
+              aria-pressed={layout === 'grid'}
+              className={`p-2 rounded-lg transition-colors ${layout === 'grid' ? 'bg-[var(--gold)] text-white' : 'text-[var(--text)]/60 hover:text-[var(--gold)]'}`}
+            >
+              <LayoutGrid size={18} />
+            </button>
+          </div>
+        </div>
+
+        {loading && <p className="text-[var(--gold)]/60 text-sm">Loading projects…</p>}
         {error   && <p className="text-red-500 text-sm">{error}</p>}
 
-        <div className="flex flex-col gap-7">
-          {!loading && !error && projects.map((p) => (
-            <ProjectCard key={p._id} {...p} />
+        <div className={layout === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6' : 'flex flex-col gap-7'}>
+          {!loading && !error && visibleProjects.map((p) => (
+            layout === 'grid'
+              ? <ProjectCardGrid key={p._id} {...p} />
+              : <ProjectCard key={p._id} {...p} />
           ))}
-          {!loading && !error && projects.length === 0 && (
-            <p className="text-[#1a1a1a]/50 text-sm">No projects found.</p>
+          {!loading && !error && visibleProjects.length === 0 && (
+            <p className="text-[var(--text)]/50 text-sm">No projects found.</p>
           )}
         </div>
       </div>

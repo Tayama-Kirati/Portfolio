@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import Tayama from '../assets/Tayama.png';
 import { useTypewriter } from '../hooks/useTypewriter';
 
 const ROLES = [
@@ -37,36 +36,28 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="flex items-start bg-[#F5EDD6] pt-4 pb-16"
+      className="flex items-start bg-[var(--bg)] pt-28 pb-16"
     >
-      <div className="max-w-6xl mx-auto px-6 w-full flex flex-col md:flex-row items-center gap-8">
-
-        <div className="flex-shrink-0 w-40 md:w-1/2  rounded-2xl overflow-hidden shadow-lg">
-          <img
-            src={Tayama}
-            alt="Tayama Kirati"
-            className="w-full h-auto object-cover"
-          />
-        </div>
+      <div className="max-w-6xl mx-auto px-6 w-full flex flex-col items-center">
 
         <div className="flex flex-col gap-3 text-center">
-          <p className={`text-4xl font-bold text-black${helloTyped ? '' : ' typewriter-cursor'}`}>
+          <p className={`text-4xl font-bold text-[var(--text)]${helloTyped ? '' : ' typewriter-cursor'}`}>
             {hello || ' '}
           </p>
 
           <h1
-            className={`font-outfit text-4xl font-extrabold leading-tight text-black transition-opacity duration-500 ${showName ? 'opacity-100' : 'opacity-0'}`}
+            className={`font-outfit text-4xl font-extrabold leading-tight text-[var(--text)] transition-opacity duration-500 ${showName ? 'opacity-100' : 'opacity-0'}`}
           >
             I'm <span style={{ color: 'var(--gold-dark)' }}>Tayama Kirati</span>.
           </h1>
 
           <h2
-            className={`font-outfit text-3xl font-extrabold leading-snug text-black min-h-[2.5rem] transition-opacity duration-500 ${showName ? 'opacity-100' : 'opacity-0'}`}
+            className={`font-outfit text-3xl font-extrabold leading-snug text-[var(--text)] min-h-[2.5rem] transition-opacity duration-500 ${showName ? 'opacity-100' : 'opacity-0'}`}
           >
             <span className="typewriter-cursor">{role}</span>
           </h2>
 
-          <div className={`flex flex-wrap justify-center md:justify-start gap-4 mt-6 transition-opacity duration-700 ${showButtons ? 'opacity-100' : 'opacity-0'}`}>
+          <div className={`flex flex-wrap justify-center gap-4 mt-6 transition-opacity duration-700 ${showButtons ? 'opacity-100' : 'opacity-0'}`}>
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="px-7 py-3 text-white rounded-full font-semibold text-sm shadow-md"

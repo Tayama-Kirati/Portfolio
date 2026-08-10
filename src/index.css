@@ -2,30 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
- 
+
+/* "current" theme (default, no extra class) — the site's signature cream/gold look */
 :root {
-  --bg:         #F5EDD6;
-  --bg-card:    #F5D9A0;
-  --bg-section: #B8860B;
-  --text:       #1a1a1a;
-  --text-muted: rgba(26,26,26,0.55);
-  --gold:       #B8860B;
-  --gold-dark:  #8B6508;
-  --border:     rgba(184,134,11,0.15);
-  --input-bg:   rgba(245,237,214,0.85);
+  --bg:           #F5EDD6;
+  --bg-alt:       #B8860B;
+  --bg-tint:      #FFE9B1;
+  --card:         #F5D9A0;
+  --card-alt:     #FAF9F6;
+  --card-on-alt:  #E8E0D0;
+  --text:         #1a1a1a;
+  --text-muted:   rgba(26,26,26,0.55);
+  --text-on-alt:  #ffffff;
+  --gold:         #B8860B;
+  --gold-dark:    #8B6508;
+  --border:       rgba(184,134,11,0.15);
+  --input-bg:     rgba(245,237,214,0.85);
+
+  /* legacy aliases kept for any lingering references */
+  --bg-card:    var(--card);
+  --bg-section: var(--bg-alt);
 }
 
-
+/* dark theme */
 .dark {
-  --bg:         #1a1610;
-  --bg-card:    #2a2218;
-  --bg-section: #7a5800;
-  --text:       #f0e6cc;
-  --text-muted: rgba(240,230,204,0.55);
-  --gold:       #D4A017;
-  --gold-dark:  #B8860B;
-  --border:     rgba(212,160,23,0.2);
-  --input-bg:   rgba(42,34,24,0.7);
+  --bg:           #1a1610;
+  --bg-alt:       #7a5800;
+  --bg-tint:      #241d0f;
+  --card:         #2a2218;
+  --card-alt:     #221b10;
+  --card-on-alt:  #3a2f18;
+  --text:         #f0e6cc;
+  --text-muted:   rgba(240,230,204,0.55);
+  --text-on-alt:  #ffffff;
+  --gold:         #D4A017;
+  --gold-dark:    #B8860B;
+  --border:       rgba(212,160,23,0.2);
+  --input-bg:     rgba(42,34,24,0.7);
+
+  --bg-card:    var(--card);
+  --bg-section: var(--bg-alt);
+}
+
+/* light theme — clean neutral white, gold used only as an accent */
+.light {
+  --bg:           #ffffff;
+  --bg-alt:       #f4f4f5;
+  --bg-tint:      #fafafa;
+  --card:         #f4f4f5;
+  --card-alt:     #f9f9f9;
+  --card-on-alt:  #ffffff;
+  --text:         #18181b;
+  --text-muted:   rgba(24,24,27,0.55);
+  --text-on-alt:  #18181b;
+  --gold:         #B8860B;
+  --gold-dark:    #8B6508;
+  --border:       rgba(24,24,27,0.12);
+  --input-bg:     #f4f4f5;
+
+  --bg-card:    var(--card);
+  --bg-section: var(--bg-alt);
 }
 
  
