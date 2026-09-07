@@ -16,8 +16,35 @@ import coverSnapSignsImg   from '../assets/cover-snapsigns.png';
 import coverGenealogyImg   from '../assets/cover-genealogy.png';
 import coverSlamImg        from '../assets/cover-slam.png';
 
+import dnDashboardImg         from '../assets/dn-dashboard.png';
+import dnAdminSetupImg        from '../assets/dn-admin-setup.png';
+import dnAdmissionImg         from '../assets/dn-admission.png';
+import dnClassroomImg         from '../assets/dn-classroom.png';
+import dnStudentImg           from '../assets/dn-student.png';
+import dnEmployeeImg          from '../assets/dn-employee.png';
+import dnEmployeeAddImg       from '../assets/dn-employee-add.png';
+import dnFormBuilderImg       from '../assets/dn-form-builder.png';
+import dnFormDesignerImg      from '../assets/dn-form-designer.png';
+import dnFormDesignerThemeImg from '../assets/dn-form-designer-theme.png';
+import dnFormDesignerContentImg  from '../assets/dn-form-designer-content.png';
+import dnFormDesignerSettingsImg from '../assets/dn-form-designer-settings.png';
+
 // Map project titles to arrays of images. Add more to any array for a carousel.
 const LOCAL_IMAGES = {
+  'Digital Nepal : School Management System': [
+    dnDashboardImg,
+    dnAdminSetupImg,
+    dnAdmissionImg,
+    dnClassroomImg,
+    dnStudentImg,
+    dnEmployeeImg,
+    dnEmployeeAddImg,
+    dnFormBuilderImg,
+    dnFormDesignerImg,
+    dnFormDesignerThemeImg,
+    dnFormDesignerContentImg,
+    dnFormDesignerSettingsImg,
+  ],
   'Khim : Home Management System': [khimImg],
   'MetMomo : Food Ordering System': [metmomoImg],
   'PeaNut : E-Commerce Platform':   [peanutImg],
