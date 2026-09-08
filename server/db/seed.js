@@ -81,7 +81,7 @@ const education = [
 ];
 
 const experience = [
-  { company: 'E-Digital Nepal', role: 'UI/UX Designer', period: 'June 2025 – Present', sortOrder: 1 },
+  { company: 'E-Digital Nepal', role: 'UI/UX Designer', period: 'June 2026 – August 2026', sortOrder: 1 },
 ];
 
 // TODO: fill in real entries, e.g.
